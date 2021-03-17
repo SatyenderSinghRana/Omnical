@@ -13,9 +13,10 @@ import org.w3c.dom.Text;
 public class MainActivity extends AppCompatActivity {
 
     Button btn_0, btn_1, btn_2, btn_3, btn_4, btn_5, btn_6, btn_7, btn_8, btn_9,
-            btn_clear, btn_del, btn_plus, btn_minus, btn_multiply, btn_divide, btn_equal;
-    TextView display;
-    String total = "";
+            btn_clear, btn_del, btn_plus, btn_minus, btn_multiply, btn_divide, btn_equal,
+            btn_percent, btn_plus_minus, btn_dot;
+    TextView display, equation;
+    String total = "", result = "";
 
     Button gotoNew;
 
@@ -27,6 +28,8 @@ public class MainActivity extends AppCompatActivity {
         gotoNew = findViewById(R.id.btn_newCal);
 
         display = findViewById(R.id.display);
+        equation = findViewById(R.id.equation);
+
         btn_0 = findViewById(R.id.btn_0);
         btn_1 = findViewById(R.id.btn_1);
         btn_2 = findViewById(R.id.btn_2);
@@ -43,6 +46,9 @@ public class MainActivity extends AppCompatActivity {
         btn_minus = findViewById(R.id.btn_minus);
         btn_multiply = findViewById(R.id.btn_multiply);
         btn_divide = findViewById(R.id.btn_divide);
+        btn_percent = findViewById(R.id.btn_percent);
+        btn_plus_minus = findViewById(R.id.btn_plus_minus);
+        btn_dot = findViewById(R.id.btn_dot);
         btn_equal = findViewById(R.id.btn_equal);
 
         gotoNew.setOnClickListener(new View.OnClickListener() {
@@ -57,7 +63,7 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 total = total + "0";
-                display.setText(total);
+                equation.setText(total);
             }
         });
 
@@ -65,7 +71,7 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 total = total + "1";
-                display.setText(total);
+                equation.setText(total);
             }
         });
 
@@ -73,7 +79,7 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 total = total + "2";
-                display.setText(total);
+                equation.setText(total);
             }
         });
 
@@ -81,7 +87,7 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 total = total + "3";
-                display.setText(total);
+                equation.setText(total);
             }
         });
 
@@ -89,7 +95,7 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 total = total + "4";
-                display.setText(total);
+                equation.setText(total);
             }
         });
 
@@ -97,7 +103,7 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 total = total + "5";
-                display.setText(total);
+                equation.setText(total);
             }
         });
 
@@ -105,7 +111,7 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 total = total + "6";
-                display.setText(total);
+                equation.setText(total);
             }
         });
 
@@ -113,7 +119,7 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 total = total + "7";
-                display.setText(total);
+                equation.setText(total);
             }
         });
 
@@ -121,7 +127,7 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 total = total + "8";
-                display.setText(total);
+                equation.setText(total);
             }
         });
 
@@ -129,7 +135,7 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 total = total + "9";
-                display.setText(total);
+                equation.setText(total);
             }
         });
 
@@ -138,6 +144,7 @@ public class MainActivity extends AppCompatActivity {
             public void onClick(View v) {
                 total = "";
                 display.setText(total);
+                equation.setText((total));
             }
         });
 
@@ -149,16 +156,84 @@ public class MainActivity extends AppCompatActivity {
                 } else {
                     total = total.substring(0, total.length() - 1);
                 }
-                display.setText(total);
+                equation.setText(total);
             }
         });
 
         btn_plus.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                int a = Integer.parseInt(total);
+                String check_last = total.substring(0, total.length() - 1);
+                if(check_last.equals(" + ") || check_last.equals(" - ") || check_last.equals(" x ") || check_last.equals(" / ")) {
+                    total = total.substring(0, total.length() - 1);
+                }
+                total = total + " + ";
+                equation.setText(total);
+            }
+        });
 
-                display.setText(total);
+        btn_minus.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                String check_last = total.substring(0, total.length() - 1);
+                if(check_last.equals(" + ") || check_last.equals(" - ") || check_last.equals(" x ") || check_last.equals(" / ")) {
+                    total = total.substring(0, total.length() - 1);
+                }
+                total = total + " - ";
+                equation.setText(total);
+            }
+        });
+
+        btn_multiply.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                String check_last = total.substring(0, total.length() - 1);
+                if(check_last.equals(" + ") || check_last.equals(" - ") || check_last.equals(" x ") || check_last.equals(" / ")) {
+                    total = total.substring(0, total.length() - 1);
+                }
+                total = total + " x ";
+                equation.setText(total);
+            }
+        });
+
+        btn_divide.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                String check_last = total.substring(0, total.length() - 1);
+                if(check_last.equals(" + ") || check_last.equals(" - ") || check_last.equals(" x ") || check_last.equals(" / ")) {
+                    total = total.substring(0, total.length() - 1);
+                }
+                total = total + " - ";
+                equation.setText(total);
+            }
+        });
+
+        btn_plus_minus.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                total = Integer.toString(Integer.parseInt(total) * (-1));
+                equation.setText(total);
+            }
+        });
+
+        btn_dot.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                String check_last = total.substring(0, total.length() - 1);
+                if(check_last.equals(" + ") || check_last.equals(" - ") || check_last.equals(" x ") || check_last.equals(" / ")) {
+                    total = total.substring(0, total.length() - 1);
+                }
+                total = total + ".";
+                equation.setText(total);
+            }
+        });
+
+        btn_equal.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                //process complete equation
+                equation.setText(total);
+                display.setText(result);
             }
         });
 

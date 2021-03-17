@@ -7,25 +7,59 @@
     tools:context=".newCalculator">
 
     <TextView
+        android:id="@+id/display"
+        android:layout_width="match_parent"
+        android:layout_height="160dp"
+        android:background="#fffcf5"
+        android:gravity="center"
+        android:hint="..."
+        android:padding="16dp"
+        android:textSize="48sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/equation"
+        android:layout_width="match_parent"
+        android:layout_height="64dp"
+        android:background="#fbe29f"
+        android:gravity="center"
+        android:hint="..."
+        android:padding="16dp"
+        android:textSize="18sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/display" />
+
+    <Space
+        android:id="@+id/space"
+        android:layout_width="match_parent"
+        android:layout_height="2dp"
+        android:background="#f9e092"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/equation" />
+
+    <TextView
         android:id="@+id/textView"
         android:layout_width="150dp"
         android:layout_height="40dp"
         android:gravity="bottom"
+        android:layout_margin="16dp"
         android:text="First Value"
         android:textSize="20sp"
-        android:layout_margin="20dp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/gridLayout" />
-
 
     <TextView
         android:id="@+id/textView2"
         android:layout_width="150dp"
         android:layout_height="40dp"
         android:gravity="bottom"
+        android:layout_margin="16dp"
         android:text="Second Value"
         android:textSize="20sp"
-        android:layout_margin="20dp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textView" />
 
@@ -34,8 +68,8 @@
         android:layout_width="150dp"
         android:layout_height="40dp"
         android:gravity="bottom"
+        android:layout_margin="16dp"
         android:inputType="number"
-        android:layout_margin="20dp"
         app:layout_constraintStart_toEndOf="@+id/textView"
         app:layout_constraintTop_toBottomOf="@+id/gridLayout" />
 
@@ -44,118 +78,132 @@
         android:layout_width="150dp"
         android:layout_height="40dp"
         android:gravity="bottom"
+        android:layout_margin="16dp"
         android:inputType="number"
-        android:layout_margin="20dp"
         app:layout_constraintStart_toEndOf="@+id/textView2"
         app:layout_constraintTop_toBottomOf="@+id/et1" />
 
+
     <GridLayout
         android:id="@+id/gridLayout"
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:alignmentMode="alignBounds"
         android:columnCount="4"
-        android:layout_marginTop="40dp"
+        android:layout_marginLeft="16dp"
+        android:layout_marginRight="16dp"
+        android:layout_marginTop="96dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/display">
+        app:layout_constraintTop_toBottomOf="@+id/equation">
 
         <androidx.appcompat.widget.AppCompatButton
             android:id="@+id/btn_plus"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_margin="5dp"
+            android:layout_width="0dp"
+            android:layout_height="64dp"
+            android:layout_columnWeight="1"
+            android:layout_gravity="fill_horizontal"
+            android:background="@color/white"
+            android:elevation="6dp"
+            android:gravity="center"
             android:text="+"
-            tools:layout_editor_absoluteX="42dp"
-            tools:layout_editor_absoluteY="289dp" />
+            android:textColor="#107092" />
 
         <androidx.appcompat.widget.AppCompatButton
             android:id="@+id/btn_minus"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_margin="5dp"
+            android:layout_width="0dp"
+            android:layout_height="64dp"
+            android:layout_columnWeight="1"
+            android:layout_gravity="fill_horizontal"
+            android:background="@color/white"
+            android:elevation="6dp"
+            android:gravity="center"
             android:text="-"
+            android:textColor="#107092"
             tools:layout_editor_absoluteX="34dp"
             tools:layout_editor_absoluteY="369dp" />
 
         <androidx.appcompat.widget.AppCompatButton
             android:id="@+id/btn_multiply"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_margin="5dp"
+            android:layout_width="0dp"
+            android:layout_height="64dp"
+            android:layout_columnWeight="1"
+            android:layout_gravity="fill_horizontal"
+            android:background="@color/white"
+            android:elevation="6dp"
+            android:gravity="center"
             android:text="x"
-            tools:layout_editor_absoluteX="161dp"
-            tools:layout_editor_absoluteY="289dp" />
+            android:textColor="#107092" />
 
         <androidx.appcompat.widget.AppCompatButton
             android:id="@+id/btn_divide"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_margin="5dp"
+            android:layout_width="0dp"
+            android:layout_height="64dp"
+            android:layout_columnWeight="1"
+            android:layout_gravity="fill_horizontal"
+            android:background="@color/white"
+            android:elevation="6dp"
+            android:gravity="center"
             android:text="/"
-            tools:layout_editor_absoluteX="170dp"
-            tools:layout_editor_absoluteY="358dp" />
+            android:textColor="#107092" />
 
         <androidx.appcompat.widget.AppCompatButton
             android:id="@+id/btn_sine"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_margin="5dp"
+            android:layout_width="0dp"
+            android:layout_height="64dp"
+            android:layout_columnWeight="1"
+            android:layout_gravity="fill_horizontal"
+            android:background="@color/white"
+            android:elevation="6dp"
+            android:gravity="center"
             android:text="sin"
-            tools:layout_editor_absoluteX="170dp"
-            tools:layout_editor_absoluteY="358dp" />
+            android:textColor="#107092" />
 
         <androidx.appcompat.widget.AppCompatButton
             android:id="@+id/btn_cos"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_margin="5dp"
+            android:layout_width="0dp"
+            android:layout_height="64dp"
+            android:layout_columnWeight="1"
+            android:layout_gravity="fill_horizontal"
+            android:background="@color/white"
+            android:elevation="6dp"
+            android:gravity="center"
             android:text="cos"
-            tools:layout_editor_absoluteX="170dp"
-            tools:layout_editor_absoluteY="358dp" />
+            android:textColor="#107092" />
 
         <androidx.appcompat.widget.AppCompatButton
             android:id="@+id/btn_tan"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_margin="5dp"
+            android:layout_width="0dp"
+            android:layout_height="64dp"
+            android:layout_columnWeight="1"
+            android:layout_gravity="fill_horizontal"
+            android:background="@color/white"
+            android:elevation="6dp"
+            android:gravity="center"
             android:text="tan"
-            tools:layout_editor_absoluteX="170dp"
-            tools:layout_editor_absoluteY="358dp" />
+            android:textColor="#107092" />
 
         <androidx.appcompat.widget.AppCompatButton
             android:id="@+id/btn_log"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_margin="5dp"
+            android:layout_width="0dp"
+            android:layout_height="64dp"
+            android:layout_columnWeight="1"
+            android:layout_gravity="fill_horizontal"
+            android:background="@color/white"
+            android:elevation="6dp"
+            android:gravity="center"
             android:text="log"
-            tools:layout_editor_absoluteX="170dp"
-            tools:layout_editor_absoluteY="358dp" />
+            android:textColor="#107092" />
 
     </GridLayout>
-
-    <TextView
-        android:id="@+id/display"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:gravity="center"
-        android:hint="Result"
-        android:padding="10dp"
-        android:maxLength="8"
-        android:maxLines="1"
-        android:textSize="40sp"
-        android:layout_margin="16dp"
-        android:textColor="#FFFFFF"
-        android:background="#919191"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
 
     <androidx.appcompat.widget.AppCompatButton
         android:id="@+id/btn_clear"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="clear"
-        android:layout_marginTop="20dp"
+        android:layout_margin="32dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/et2" />
