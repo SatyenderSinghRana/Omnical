@@ -5,7 +5,11 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
+import android.view.animation.Animation;
+import android.view.animation.AnimationUtils;
 import android.widget.Button;
+import android.widget.EditText;
+import android.widget.GridLayout;
 import android.widget.TextView;
 
 import org.w3c.dom.Text;
@@ -14,18 +18,19 @@ public class MainActivity extends AppCompatActivity {
 
     Button btn_0, btn_1, btn_2, btn_3, btn_4, btn_5, btn_6, btn_7, btn_8, btn_9,
             btn_clear, btn_del, btn_plus, btn_minus, btn_multiply, btn_divide, btn_equal,
-            btn_percent, btn_plus_minus, btn_dot;
-    TextView display, equation;
+            btn_percent, btn_plus_minus, btn_dot, up_down_btn;
+    TextView display;
+    EditText equation;
     String total = "", result = "";
-
-    Button gotoNew;
+    GridLayout gridLayout;
+    Boolean value = false;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        gotoNew = findViewById(R.id.btn_newCal);
+        gridLayout = findViewById(R.id.gridLayout3);
 
         display = findViewById(R.id.display);
         equation = findViewById(R.id.equation);
@@ -50,14 +55,7 @@ public class MainActivity extends AppCompatActivity {
         btn_plus_minus = findViewById(R.id.btn_plus_minus);
         btn_dot = findViewById(R.id.btn_dot);
         btn_equal = findViewById(R.id.btn_equal);
-
-        gotoNew.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent i = new Intent(MainActivity.this, newCalculator.class);
-                startActivity(i);
-            }
-        });
+        up_down_btn = findViewById(R.id.up_down_btn);
 
         btn_0.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -142,17 +140,17 @@ public class MainActivity extends AppCompatActivity {
         btn_clear.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                total = "";
+                total = " = ";
                 display.setText(total);
-                equation.setText((total));
+                equation.setText("");
             }
         });
 
         btn_del.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if (total.equals("0")) {
-                    //do nothing
+                if (total.equals("0") || total.equals("")) {
+                    display.setText(" = ");
                 } else {
                     total = total.substring(0, total.length() - 1);
                 }
@@ -200,10 +198,10 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 String check_last = total.substring(0, total.length() - 1);
-                if(check_last.equals(" + ") || check_last.equals(" - ") || check_last.equals(" x ") || check_last.equals(" / ")) {
+                if(check_last.equals(" + ") || check_last.equals(" - ") || check_last.equals(" x ") || check_last.equals(" ÷ ")) {
                     total = total.substring(0, total.length() - 1);
                 }
-                total = total + " - ";
+                total = total + " ÷ ";
                 equation.setText(total);
             }
         });
@@ -233,9 +231,23 @@ public class MainActivity extends AppCompatActivity {
             public void onClick(View v) {
                 //process complete equation
                 equation.setText(total);
-                display.setText(result);
+                display.setText(" = " + result);
             }
         });
 
+        up_down_btn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if(value == false) {
+                    gridLayout.setVisibility(View.VISIBLE);
+                    up_down_btn.setText("▼");
+                    value = true;
+                } else {
+                    gridLayout.setVisibility(View.GONE);
+                    up_down_btn.setText("▲");
+                    value = false;
+                }
+            }
+        });
     }
 }
