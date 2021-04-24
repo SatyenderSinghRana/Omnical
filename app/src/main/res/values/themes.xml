@@ -14,14 +14,33 @@
         <!-- Customize your theme here. -->
     </style>
 
-    <style name="myGridButtonStyle">
+    <style name="myGridButtonStyleNumbers">
         <item name="android:layout_width">0dp</item>
-        <item name="android:layout_height">64dp</item>
-        <item name="android:padding">16dp</item>
-        <item name="android:textSize">16sp</item>
+        <item name="android:layout_height">48dp</item>
+        <item name="android:layout_margin">8dp</item>
+        <item name="android:layout_marginTop">18dp</item>
+        <item name="android:textSize">14sp</item>
         <item name="android:gravity">center</item>
-        <item name="elevation">6dp</item>
-        <item name="android:textColor">#3b468f</item>
+        <item name="android:stateListAnimator">@null</item>
+        <item name="android:elevation">3dp</item>
+        <item name="android:translationZ">2dp</item>
+        <item name="android:shadowColor">@color/number_button_text_color</item>
+        <item name="android:textColor">@drawable/text_selector_numbers</item>
+        <item name="android:layout_columnWeight">1</item>
+        <item name="android:layout_gravity">fill_horizontal</item>
+    </style>
+    <style name="myGridButtonStyleOperations">
+        <item name="android:layout_width">0dp</item>
+        <item name="android:layout_height">48dp</item>
+        <item name="android:layout_margin">8dp</item>
+        <item name="android:layout_marginTop">18dp</item>
+        <item name="android:textSize">14sp</item>
+        <item name="android:gravity">center</item>
+        <item name="android:stateListAnimator">@null</item>
+        <item name="android:elevation">3dp</item>
+        <item name="android:translationZ">2dp</item>
+        <item name="android:shadowColor">@color/operation_button_color</item>
+        <item name="android:textColor">@drawable/text_selector_operations</item>
         <item name="android:layout_columnWeight">1</item>
         <item name="android:layout_gravity">fill_horizontal</item>
     </style>

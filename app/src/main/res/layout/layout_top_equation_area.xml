@@ -7,29 +7,60 @@
     android:layout_height="match_parent">
 
     <TextView
-        android:id="@+id/display"
+        android:id="@+id/calculated_answer"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:padding="20dp"
-        android:hint="answer"
-        android:textSize="40sp"
+        android:alpha="1"
+        android:textSize="20sp"
+        android:textColor="@color/textview_color"
+        android:hint="@string/answer_hint"
+        android:textColorHint="@color/textview_color"
+        android:maxLines="4"
+        android:maxLength="60"
+        android:layout_marginTop="40dp"
+        android:layout_marginLeft="20dp"
+        android:layout_marginRight="20dp"
+        android:layout_marginBottom="20dp"
+        android:textIsSelectable="true"
+        android:background="@drawable/button_design_colored"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
-    <EditText
-        android:id="@+id/equation"
+    <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        style="@style/Widget.AppCompat.Button.Borderless"
-        android:padding="20dp"
-        android:hint="equation"
-        android:textSize="26sp"
-        android:gravity="left"
-        android:minHeight="0dp"
-        android:minWidth="0dp"
-        android:textAppearance="@style/Widget.AppCompat.EditText"
+        android:gravity="center"
+        android:orientation="horizontal"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/display" />
+        app:layout_constraintTop_toBottomOf="@+id/calculated_answer"
+        tools:ignore="UseCompoundDrawables">
+        <ImageView
+            android:id="@+id/openCamera"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:layout_marginStart="16dp"
+            android:src="@drawable/ic_baseline_camera_24"
+            android:contentDescription="@string/camera_description" />
+        <TextView
+            android:id="@+id/user_expression"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:paddingStart="6dp"
+            android:paddingEnd="20dp"
+            android:paddingBottom="20dp"
+            android:paddingTop="20dp"
+            android:textColor="@color/textview_color"
+            android:hint="@string/expression_hint"
+            android:textColorHint="@color/textview_color"
+            android:textSize="16sp"
+            android:gravity="start"
+            android:minHeight="0dp"
+            android:minWidth="0dp"
+            android:maxLength="30"
+            android:maxLines="2"
+            android:textIsSelectable="true" />
+    </LinearLayout>
 </androidx.constraintlayout.widget.ConstraintLayout>

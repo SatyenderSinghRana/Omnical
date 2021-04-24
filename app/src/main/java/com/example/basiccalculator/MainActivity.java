@@ -2,37 +2,39 @@ package com.example.basiccalculator;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
-import android.view.animation.Animation;
-import android.view.animation.AnimationUtils;
+import android.view.animation.AlphaAnimation;
 import android.widget.Button;
-import android.widget.EditText;
-import android.widget.GridLayout;
+import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
-import org.w3c.dom.Text;
+import java.util.ArrayList;
 
 public class MainActivity extends AppCompatActivity {
 
     Button btn_0, btn_1, btn_2, btn_3, btn_4, btn_5, btn_6, btn_7, btn_8, btn_9,
-            btn_clear, btn_plus, btn_minus, btn_multiply, btn_divide, btn_equal,
-            btn_plus_minus, up_down_btn, btn_del, btn_percent;
+            btn_clear, btn_plus, btn_minus, btn_multiply, btn_divide, btn_equal;
 
-    TextView display;
-    EditText equation;
-    String total = "", result = "";
-    //GridLayout gridLayout;
-    //Boolean value = false;
+    ImageView btn_camera;
+    TextView tv_answer, tv_user_expression;
+    String expression = "", answer = "", lastInput = "";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+        initializeViews();
+        setListeners();
+    }
 
-        display = findViewById(R.id.display);
-        equation = findViewById(R.id.equation);
+    private void initializeViews(){
+        tv_answer = findViewById(R.id.calculated_answer);
+        tv_user_expression = findViewById(R.id.user_expression);
+        btn_camera = findViewById(R.id.openCamera);
 
         btn_0 = findViewById(R.id.btn_0);
         btn_1 = findViewById(R.id.btn_1);
@@ -44,201 +46,272 @@ public class MainActivity extends AppCompatActivity {
         btn_7 = findViewById(R.id.btn_7);
         btn_8 = findViewById(R.id.btn_8);
         btn_9 = findViewById(R.id.btn_9);
-        btn_clear = findViewById(R.id.btn_clear);
+
         btn_plus = findViewById(R.id.btn_plus);
         btn_minus = findViewById(R.id.btn_minus);
         btn_multiply = findViewById(R.id.btn_multiply);
         btn_divide = findViewById(R.id.btn_divide);
-        btn_equal = findViewById(R.id.btn_equal);
 
-        //btn_del = findViewById(R.id.btn_delete);
-        //btn_percent = findViewById(R.id.btn_percent);
-        //btn_plus_minus = findViewById(R.id.btn_plus_minus);
-        //up_down_btn = findViewById(R.id.up_down_btn);
-        //gridLayout = findViewById(R.id.gridLayout);
+        btn_clear = findViewById(R.id.btn_clear);
+        btn_equal = findViewById(R.id.btn_equal);
+    }
+
+    @SuppressLint("ClickableViewAccessibility")
+    private void setListeners(){
+        btn_camera.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent i = new Intent(MainActivity.this, CameraLayout.class);
+                startActivity(i);
+            }
+        });
 
         btn_0.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                total = total + "0";
-                equation.setText(total);
+                expression = expression + "0";
+                tv_user_expression.setText(expression);
             }
         });
-
         btn_1.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                total = total + "1";
-                equation.setText(total);
+                expression = expression + "1";
+                tv_user_expression.setText(expression);
             }
         });
-
         btn_2.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                total = total + "2";
-                equation.setText(total);
+                expression = expression + "2";
+                tv_user_expression.setText(expression);
             }
         });
-
         btn_3.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                total = total + "3";
-                equation.setText(total);
+                expression = expression + "3";
+                tv_user_expression.setText(expression);
             }
         });
-
         btn_4.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                total = total + "4";
-                equation.setText(total);
+                expression = expression + "4";
+                tv_user_expression.setText(expression);
             }
         });
-
         btn_5.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                total = total + "5";
-                equation.setText(total);
+                expression = expression + "5";
+                tv_user_expression.setText(expression);
             }
         });
-
         btn_6.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                total = total + "6";
-                equation.setText(total);
+                expression = expression + "6";
+                tv_user_expression.setText(expression);
             }
         });
-
         btn_7.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                total = total + "7";
-                equation.setText(total);
+                expression = expression + "7";
+                tv_user_expression.setText(expression);
             }
         });
-
         btn_8.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                total = total + "8";
-                equation.setText(total);
+                expression = expression + "8";
+                tv_user_expression.setText(expression);
             }
         });
-
         btn_9.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                total = total + "9";
-                equation.setText(total);
-            }
-        });
-
-        btn_clear.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                total = "";
-                display.setText(total);
-                equation.setText("");
+                expression = expression + "9";
+                tv_user_expression.setText(expression);
             }
         });
 
         btn_plus.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                String check_last = total.substring(0, total.length() - 1);
-                if(check_last.equals(" + ") || check_last.equals(" - ") || check_last.equals(" x ") || check_last.equals(" / ")) {
-                    total = total.substring(0, total.length() - 1);
-                }
-                total = total + " + ";
-                equation.setText(total);
+                checkOperator("+");
             }
         });
-
-
         btn_minus.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                String check_last = total.substring(0, total.length() - 1);
-                if(check_last.equals(" + ") || check_last.equals(" - ") || check_last.equals(" x ") || check_last.equals(" / ")) {
-                    total = total.substring(0, total.length() - 1);
-                }
-                total = total + " - ";
-                equation.setText(total);
+                checkOperator("-");
             }
         });
-
         btn_multiply.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                String check_last = total.substring(0, total.length() - 1);
-                if(check_last.equals(" + ") || check_last.equals(" - ") || check_last.equals(" x ") || check_last.equals(" / ")) {
-                    total = total.substring(0, total.length() - 1);
-                }
-                total = total + " x ";
-                equation.setText(total);
+                checkOperator("x");
             }
         });
-
         btn_divide.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                String check_last = total.substring(0, total.length() - 1);
-                if(check_last.equals(" + ") || check_last.equals(" - ") || check_last.equals(" x ") || check_last.equals(" ÷ ")) {
-                    total = total.substring(0, total.length() - 1);
-                }
-                total = total + " ÷ ";
-                equation.setText(total);
+                checkOperator("/");
             }
         });
 
+        btn_clear.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                expression = "";
+                tv_answer.setText(expression);
+                tv_user_expression.setText("");
+                tv_user_expression.setError(null);
+            }
+        });
         btn_equal.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                //process complete equation
-                equation.setText(total);
-                display.setText(result);
-            }
-        });
-
-        /*
-        btn_del.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                if (total.equals("0") || total.equals("")) {
-                    display.setText(" = ");
+                if(expression.length() == 0) {
+                    tv_user_expression.setError(null);
                 } else {
-                    total = total.substring(0, total.length() - 1);
-                }
-                equation.setText(total);
-            }
-        });
+                    lastInput = expression.substring(expression.length() - 1);
+                    //Toast.makeText(getBaseContext(), lastInput, Toast.LENGTH_SHORT).show();
+                    if(lastInput.equals("+") || lastInput.equals("-") || lastInput.equals("x") || lastInput.equals("/")) {
 
-        btn_plus_minus.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                total = Integer.toString(Integer.parseInt(total) * (-1));
-                equation.setText(total);
-            }
-        });
+                        tv_user_expression.requestFocus();
+                        tv_user_expression.setError("Invalid Expression!");
+                    } else {
+                        tv_user_expression.setError(null);
 
-        up_down_btn.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                if(value == false) {
-                    gridLayout.setVisibility(View.VISIBLE);
-                    up_down_btn.setText("▼");
-                    value = true;
-                } else {
-                    gridLayout.setVisibility(View.GONE);
-                    up_down_btn.setText("▲");
-                    value = false;
+                        //get tokens from expression into ArrayList
+                        ArrayList<String> myTokens = createTokens(expression);
+
+                        /*
+                        StringBuilder sb = new StringBuilder();
+                        for (String s : myTokens) {
+                            sb.append(s);
+                            sb.append(" ");
+                        }
+                        String answer = sb.toString();
+                        */
+
+                        //parse tokens and get answer
+                        answer = myTokenParser(myTokens);
+
+                        //answer
+                        tv_answer.setText(answer);
+                    }
                 }
             }
         });
+    }
+
+    @SuppressLint("SetTextI18n")
+    public void checkOperator(String operator) {
+        //if expression is empty
+        if (expression.isEmpty()) {
+            //if + or - is entered
+            if(operator.equals("+") || operator.equals("-")) {
+                expression = operator;
+                tv_user_expression.setError(null);
+                tv_user_expression.setText(expression);
+            } else {
+                //if x or / is entered , show error
+                tv_user_expression.requestFocus();
+                tv_user_expression.setError("Invalid Operator: " + operator);
+            }
+        } else {
+            //when only 1 input is given
+            if(expression.length() == 1) {
+                //if single input is + or -
+                if(expression.equals("+") || expression.equals("-")){
+                    //error incase x or / are entered
+                    if (operator.equals("x") || operator.equals("/")) {
+                        tv_user_expression.requestFocus();
+                        tv_user_expression.setError("Invalid Operator: " + operator);
+                    } else if (operator.equals("+") || operator.equals("-")) {
+                        //replace single input if + or - is entered
+                        expression = operator;
+                        tv_user_expression.setText(expression);
+                        tv_user_expression.setError(null);
+                    }
+                } else {
+                    //if 0 to 9 are entered add to expression
+                    expression = expression + operator;
+                    tv_user_expression.setText(expression);
+                    tv_user_expression.setError(null);
+                }
+            } else {
+                //if more than 2 inputs are entered
+                lastInput = expression.substring(expression.length() - 1);
+                if(lastInput.equals("+") || lastInput.equals("-") || lastInput.equals("x") || lastInput.equals("/")) {
+                    expression = expression.substring(0, expression.length() - 1) + operator;
+                    tv_user_expression.setText(expression);
+                    tv_user_expression.setError(null);
+                } else if(operator.equals("+") || operator.equals("-") || operator.equals("x") || operator.equals("/")) {
+                    expression = expression + operator;
+                    tv_user_expression.setText(expression);
+                    tv_user_expression.setError(null);
+                }
+            }
+        }
+    }
+
+    //Lexer
+    public ArrayList<String> createTokens(String e) {
+        ArrayList<String> myTokens = new ArrayList<>();
+        StringBuilder word = new StringBuilder();
+        for(int i = 0; i < e.length(); i++) {
+            if(i == 0 && (e.charAt(i) == '+' || e.charAt(i) == '-')) {
+                word.append(e.charAt(i));
+            } else {
+                if(e.charAt(i) == '+' || e.charAt(i) == '-' || e.charAt(i) == 'x' || e.charAt(i) == '/') {
+                    myTokens.add(word.toString());
+                    myTokens.add("" + e.charAt(i));
+                    word = new StringBuilder();
+                } else {
+                    if(i != (e.length()-1)) {
+                        word.append(e.charAt(i));
+                    } else {
+                        word.append(e.charAt(i));
+                        myTokens.add(word.toString());
+                        word = new StringBuilder();
+                    }
+                }
+            }
+        }
+        return myTokens;
+    }
+
+    //Parser
+    public String myTokenParser(ArrayList<String> myTokens) {
+        /* Check input
+        StringBuilder sb = new StringBuilder();
+        for (String s : myTokens) {
+            sb.append(s);
+            sb.append(" ");
+        }
+        answer = sb.toString();
         */
+        for(int i = 0; i < myTokens.size(); i++) {
+            if(myTokens.get(i).equals("+") || myTokens.get(i).equals("-") ||
+                    myTokens.get(i).equals("x") || myTokens.get(i).equals("/")) {
+                //token will be + - x /
+                
+            } else {
+                //token will be a number
+            }
+        }
+
+        return answer;
     }
 }
+
+/*
+
+Toast.makeText(getBaseContext(),operator, Toast.LENGTH_SHORT).show();
+
+ */
