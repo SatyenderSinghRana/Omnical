@@ -1,16 +1,16 @@
 package com.example.basiccalculator;
 
-import androidx.appcompat.app.AppCompatActivity;
-
 import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
-import android.view.animation.AlphaAnimation;
 import android.widget.Button;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
+
+import androidx.appcompat.app.AppCompatActivity;
 
 import java.util.ArrayList;
 
@@ -189,17 +189,17 @@ public class MainActivity extends AppCompatActivity {
                         //get tokens from expression into ArrayList
                         ArrayList<String> myTokens = createTokens(expression);
 
-                        /*
-                        StringBuilder sb = new StringBuilder();
-                        for (String s : myTokens) {
-                            sb.append(s);
-                            sb.append(" ");
-                        }
-                        String answer = sb.toString();
-                        */
-
                         //parse tokens and get answer
-                        answer = myTokenParser(myTokens);
+                        myTokens = evaluateOperators(myTokens, "/");
+                        myTokens = evaluateOperators(myTokens, "x");
+                        myTokens = evaluateOperators(myTokens, "+");
+                        myTokens = evaluateOperators(myTokens, "-");
+//                        StringBuffer sb = new StringBuffer();
+//                        for (String s : myTokens) {
+//                            sb.append(s);
+//                        }
+//                        answer = sb.toString();
+                        answer = myTokens.get(0);
 
                         //answer
                         tv_answer.setText(answer);
@@ -286,27 +286,46 @@ public class MainActivity extends AppCompatActivity {
         return myTokens;
     }
 
-    //Parser
-    public String myTokenParser(ArrayList<String> myTokens) {
-        /* Check input
-        StringBuilder sb = new StringBuilder();
-        for (String s : myTokens) {
-            sb.append(s);
-            sb.append(" ");
-        }
-        answer = sb.toString();
-        */
-        for(int i = 0; i < myTokens.size(); i++) {
-            if(myTokens.get(i).equals("+") || myTokens.get(i).equals("-") ||
-                    myTokens.get(i).equals("x") || myTokens.get(i).equals("/")) {
-                //token will be + - x /
-                
-            } else {
-                //token will be a number
+    //count
+    public int countOperator(String operator, ArrayList<String> tokens) {
+        int count = 0;
+        for(int i = 0; i < tokens.size(); i++) {
+            if(tokens.get(i).equals(operator)) {
+                count++;
             }
         }
+        return count;
+    }
 
-        return answer;
+    public ArrayList<String> evaluateOperators(ArrayList<String> tokens, String operator) {
+        int count = countOperator(operator, tokens);
+        if(count == 0) {
+            return tokens;
+        } else {
+            for(int i = 0; i < count; i++) {
+                int operatorIndex = tokens.indexOf(operator);
+                String leftValue = tokens.get(operatorIndex - 1);
+                String rightValue = tokens.get(operatorIndex + 1);
+                String value = "";
+                if(operator.equals("/")) {
+                    //divide
+                    value = Integer.toString(Integer.parseInt(leftValue)/Integer.parseInt(rightValue));
+                } else if(operator.equals("x")) {
+                    //multiply
+                    value = Integer.toString(Integer.parseInt(leftValue)*Integer.parseInt(rightValue));
+                } else if(operator.equals("+")) {
+                    //sum
+                    value = Integer.toString(Integer.parseInt(leftValue)+Integer.parseInt(rightValue));
+                } else if(operator.equals("-")) {
+                    //subtract
+                    value = Integer.toString(Integer.parseInt(leftValue)-Integer.parseInt(rightValue));
+                }
+                tokens.set(operatorIndex, value);
+                tokens.remove(operatorIndex+1);
+                tokens.remove(operatorIndex-1);
+            }
+            return tokens;
+        }
     }
 }
 
