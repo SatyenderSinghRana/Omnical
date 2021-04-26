@@ -309,16 +309,16 @@ public class MainActivity extends AppCompatActivity {
                 String value = "";
                 if(operator.equals("/")) {
                     //divide
-                    value = Integer.toString(Integer.parseInt(leftValue)/Integer.parseInt(rightValue));
+                    value = Float.toString(Float.parseFloat(leftValue)/Float.parseFloat(rightValue));
                 } else if(operator.equals("x")) {
                     //multiply
-                    value = Integer.toString(Integer.parseInt(leftValue)*Integer.parseInt(rightValue));
+                    value = Float.toString(Float.parseFloat(leftValue)*Float.parseFloat(rightValue));
                 } else if(operator.equals("+")) {
                     //sum
-                    value = Integer.toString(Integer.parseInt(leftValue)+Integer.parseInt(rightValue));
+                    value = Float.toString(Float.parseFloat(leftValue)+Float.parseFloat(rightValue));
                 } else if(operator.equals("-")) {
                     //subtract
-                    value = Integer.toString(Integer.parseInt(leftValue)-Integer.parseInt(rightValue));
+                    value = Float.toString(Float.parseFloat(leftValue)-Float.parseFloat(rightValue));
                 }
                 tokens.set(operatorIndex, value);
                 tokens.remove(operatorIndex+1);
