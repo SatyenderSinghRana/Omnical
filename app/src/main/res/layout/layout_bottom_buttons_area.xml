@@ -10,7 +10,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:columnCount="4"
-        android:padding="20dp"
+        android:padding="10dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent">
@@ -75,15 +75,15 @@
             android:background="@drawable/button_design_colored"
             android:text="-" />
         <Button
-            android:id="@+id/btn_0"
-            style="@style/myGridButtonStyleNumbers"
-            android:background="@drawable/button_design"
-            android:text="0" />
-        <Button
             android:id="@+id/btn_clear"
             style="@style/myGridButtonStyleOperations"
             android:background="@drawable/button_design_colored"
             android:text="c" />
+        <Button
+            android:id="@+id/btn_0"
+            style="@style/myGridButtonStyleNumbers"
+            android:background="@drawable/button_design"
+            android:text="0" />
         <Button
             android:id="@+id/btn_equal"
             style="@style/myGridButtonStyleOperations"

@@ -14,10 +14,5 @@ public class CameraLayout extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_camera_layout);
-
-        Preview preview = new Preview.Builder().build();
-        PreviewView viewFinder = findViewById(R.id.viewFinder);
-
-
     }
 }
