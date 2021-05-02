@@ -19,7 +19,6 @@ public class MainActivity extends AppCompatActivity {
     Button btn_0, btn_1, btn_2, btn_3, btn_4, btn_5, btn_6, btn_7, btn_8, btn_9,
             btn_clear, btn_plus, btn_minus, btn_multiply, btn_divide, btn_equal;
 
-    ImageView btn_camera;
     TextView tv_answer, tv_user_expression;
     String expression = "", answer = "", lastInput = "";
 
@@ -34,7 +33,6 @@ public class MainActivity extends AppCompatActivity {
     private void initializeViews(){
         tv_answer = findViewById(R.id.calculated_answer);
         tv_user_expression = findViewById(R.id.user_expression);
-        btn_camera = findViewById(R.id.openCamera);
 
         btn_0 = findViewById(R.id.btn_0);
         btn_1 = findViewById(R.id.btn_1);
@@ -58,14 +56,6 @@ public class MainActivity extends AppCompatActivity {
 
     @SuppressLint("ClickableViewAccessibility")
     private void setListeners(){
-        btn_camera.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent i = new Intent(MainActivity.this, CameraLayout.class);
-                startActivity(i);
-            }
-        });
-
         btn_0.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -328,9 +318,3 @@ public class MainActivity extends AppCompatActivity {
         }
     }
 }
-
-/*
-
-Toast.makeText(getBaseContext(),operator, Toast.LENGTH_SHORT).show();
-
- */
