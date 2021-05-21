@@ -16,30 +16,20 @@
 
     <style name="myGridButtonStyleNumbers">
         <item name="android:layout_width">0dp</item>
-        <item name="android:layout_height">48dp</item>
-        <item name="android:layout_margin">8dp</item>
-        <item name="android:textSize">14sp</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:layout_margin">4dp</item>
+        <item name="android:textSize">16sp</item>
         <item name="android:gravity">center</item>
         <item name="android:stateListAnimator">@null</item>
         <item name="android:elevation">2dp</item>
         <item name="android:translationZ">2dp</item>
+        <item name="android:layout_weight">1</item>
         <item name="android:shadowColor">@color/number_button_text_color</item>
         <item name="android:textColor">@drawable/text_selector_numbers</item>
-        <item name="android:layout_columnWeight">1</item>
-        <item name="android:layout_gravity">fill_horizontal</item>
     </style>
-    <style name="myGridButtonStyleOperations">
-        <item name="android:layout_width">0dp</item>
-        <item name="android:layout_height">48dp</item>
-        <item name="android:layout_margin">8dp</item>
-        <item name="android:textSize">14sp</item>
-        <item name="android:gravity">center</item>
-        <item name="android:stateListAnimator">@null</item>
-        <item name="android:elevation">2dp</item>
-        <item name="android:translationZ">2dp</item>
+
+    <style name="myGridButtonStyleOperations" parent="myGridButtonStyleNumbers">
         <item name="android:shadowColor">@color/operation_button_color</item>
         <item name="android:textColor">@drawable/text_selector_operations</item>
-        <item name="android:layout_columnWeight">1</item>
-        <item name="android:layout_gravity">fill_horizontal</item>
     </style>
 </resources>

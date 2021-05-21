@@ -2,8 +2,4 @@
     <string name="app_name">Basic Calculator</string>
     <string name="answer_hint">Answer</string>
     <string name="expression_hint">Enter expression here</string>
-    <string name="camera_description">Upload image to extract expression</string>
-    <string name="gallery_description">Gallery</string>
-    <string name="close_camera_description">Close camera</string>
-    <string name="take_image_description">Take image</string>
 </resources>

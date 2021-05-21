@@ -1,24 +1,52 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout
+<LinearLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:gravity="bottom"
+    android:layout_margin="8dp">
 
-    <GridLayout
-        android:id="@+id/gridLayout"
+    <!-- Row 0 -->
+    <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:columnCount="4"
-        android:padding="10dp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent">
+        android:orientation="horizontal"
+        android:gravity="center">
+        <Button
+            android:id="@+id/btn_clear"
+            style="@style/myGridButtonStyleNumbers"
+            android:background="@drawable/button_design"
+            android:text="C"/>
+        <Button
+            android:id="@+id/btn_del"
+            style="@style/myGridButtonStyleNumbers"
+            android:background="@drawable/button_design"
+            android:text="Del" />
+        <Button
+            android:id="@+id/btn_left_paran"
+            style="@style/myGridButtonStyleNumbers"
+            android:background="@drawable/button_design"
+            android:text="(" />
+        <Button
+            android:id="@+id/btn_right_paran"
+            style="@style/myGridButtonStyleNumbers"
+            android:background="@drawable/button_design"
+            android:text=")" />
+    </LinearLayout>
+
+    <!-- Row 1 -->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:gravity="center">
         <Button
             android:id="@+id/btn_7"
             style="@style/myGridButtonStyleNumbers"
             android:background="@drawable/button_design"
-            android:text="7" />
+            android:text="7"/>
         <Button
             android:id="@+id/btn_8"
             style="@style/myGridButtonStyleNumbers"
@@ -34,6 +62,13 @@
             style="@style/myGridButtonStyleOperations"
             android:background="@drawable/button_design_colored"
             android:text="/" />
+    </LinearLayout>
+
+    <!-- Row 2 -->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
         <Button
             android:id="@+id/btn_4"
             style="@style/myGridButtonStyleNumbers"
@@ -54,6 +89,13 @@
             style="@style/myGridButtonStyleOperations"
             android:background="@drawable/button_design_colored"
             android:text="x" />
+    </LinearLayout>
+
+    <!-- Row 3 -->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
         <Button
             android:id="@+id/btn_1"
             style="@style/myGridButtonStyleNumbers"
@@ -74,11 +116,21 @@
             style="@style/myGridButtonStyleOperations"
             android:background="@drawable/button_design_colored"
             android:text="-" />
+    </LinearLayout>
+
+    <!-- Row 4 -->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+
         <Button
-            android:id="@+id/btn_clear"
+            android:id="@+id/btn_dot"
             style="@style/myGridButtonStyleOperations"
-            android:background="@drawable/button_design_colored"
-            android:text="c" />
+            android:background="@drawable/button_design"
+            android:textSize="18sp"
+            android:text="." />
+
         <Button
             android:id="@+id/btn_0"
             style="@style/myGridButtonStyleNumbers"
@@ -95,5 +147,5 @@
             android:layout_height="wrap_content"
             android:background="@drawable/button_design_colored"
             android:text="+" />
-    </GridLayout>
-</androidx.constraintlayout.widget.ConstraintLayout>
+    </LinearLayout>
+</LinearLayout>

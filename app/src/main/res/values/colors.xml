@@ -10,10 +10,9 @@
 
     <color name="top_layout">#FF000000</color>
     <color name="textview_color">#eefbfe</color>
-    <color name="number_button_color_start">#40bdaf</color>
-    <color name="number_button_color_end">#02b2cf</color>
-    <color name="number_button_text_color">#eefbfe</color>
+    <color name="number_button_color_start">#54b0f3</color>
+    <color name="number_button_color_end">#54C6F3</color>
+    <color name="number_button_text_color">#CEEEFBFE</color>
     <color name="operation_button_color">#4AFF321F</color>
     <color name="operation_button_text_color">#eefbfe</color>
-    <color name="camera_component_colors">#FF8A80</color>
 </resources>
