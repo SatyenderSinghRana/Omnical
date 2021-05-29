@@ -8,11 +8,12 @@
     <color name="black">#FF000000</color>
     <color name="white">#FFFFFFFF</color>
 
-    <color name="top_layout">#FF000000</color>
-    <color name="textview_color">#eefbfe</color>
-    <color name="number_button_color_start">#54b0f3</color>
-    <color name="number_button_color_end">#54C6F3</color>
-    <color name="number_button_text_color">#CEEEFBFE</color>
-    <color name="operation_button_color">#4AFF321F</color>
-    <color name="operation_button_text_color">#eefbfe</color>
+    <color name="app_background">#344955</color>
+    <color name="button_background">#4F6D7E</color>
+    <color name="app_name">#fff</color>
+    <color name="text_result_color">#eefbfe</color>
+    <color name="text_display_color">#232f34</color>
+    <color name="number_button_color">#fff</color>
+    <color name="operator_button_color">#80D8FF</color>
+    <color name="equal_to_button_color">#FF9E80</color>
 </resources>

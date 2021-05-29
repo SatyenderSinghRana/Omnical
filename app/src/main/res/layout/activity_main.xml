@@ -1,31 +1,37 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@drawable/bg"
-    tools:context=".MainActivity">
+    android:background="@color/app_background"
+    tools:context="com.example.omnical.MainActivity">
 
     <FrameLayout
-        android:id="@+id/frameLayout"
+        android:id="@+id/top_frame_layout"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:background="@color/text_display_color"
+        android:paddingStart="@dimen/textview_padding_medium"
+        android:paddingEnd="@dimen/textview_padding_medium"
+        android:paddingTop="@dimen/textview_padding_large"
+        android:paddingBottom="@dimen/textview_padding_medium"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent">
+
         <include layout="@layout/layout_top_equation_area" />
     </FrameLayout>
 
     <FrameLayout
-        android:id="@+id/frameLayout2"
+        android:id="@+id/bottom_frame_layout"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="16dp"
+        android:layout_margin="@dimen/layout_margin_small"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent">
+
         <include layout="@layout/layout_bottom_buttons_area" />
     </FrameLayout>
 </androidx.constraintlayout.widget.ConstraintLayout>

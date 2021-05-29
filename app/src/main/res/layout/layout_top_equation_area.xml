@@ -1,8 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
@@ -10,45 +8,59 @@
         android:id="@+id/calculated_answer"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:padding="20dp"
         android:alpha="1"
-        android:textSize="20sp"
-        android:textColor="@color/textview_color"
-        android:hint="@string/answer_hint"
-        android:textColorHint="@color/textview_color"
-        android:maxLines="4"
+        android:background="@drawable/button_state"
+        android:gravity="start"
+        android:hint="@string/result_hint"
         android:maxLength="60"
-        android:layout_marginTop="40dp"
-        android:layout_marginLeft="16dp"
-        android:layout_marginRight="16dp"
-        android:layout_marginBottom="16dp"
+        android:maxLines="4"
+        android:padding="@dimen/textview_padding_medium"
+        android:textColor="@color/text_result_color"
+        android:textColorHint="@color/text_result_color"
         android:textIsSelectable="true"
-        android:background="@drawable/button_design_colored"
+        android:textSize="@dimen/text_size_medium"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
-    <TextView
-        android:id="@+id/user_expression"
+    <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:padding="20dp"
-        android:textColor="@color/textview_color"
-        android:hint="@string/expression_hint"
-        android:textColorHint="@color/textview_color"
-        android:textSize="16sp"
-        android:alpha="0.9"
-        android:gravity="start"
-        android:minHeight="0dp"
-        android:minWidth="0dp"
-        android:maxLength="30"
-        android:maxLines="2"
-        android:layout_marginTop="4dp"
-        android:layout_marginLeft="16dp"
-        android:layout_marginRight="16dp"
-        android:textIsSelectable="true"
-        android:background="@drawable/button_design_colored"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/calculated_answer" />
+        android:layout_marginTop="@dimen/textview_space"
+        app:layout_constraintTop_toBottomOf="@+id/calculated_answer">
+
+        <TextView
+            android:id="@+id/user_expression"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:alpha="0.9"
+            android:background="@drawable/button_state"
+            android:gravity="start"
+            android:hint="@string/expression_hint"
+            android:maxLength="50"
+            android:maxLines="2"
+            android:paddingStart="@dimen/textview_padding_medium"
+            android:paddingTop="@dimen/textview_padding_medium"
+            android:paddingEnd="@dimen/textview_padding_medium"
+            android:paddingBottom="@dimen/textview_padding_medium"
+            android:textColor="@color/text_result_color"
+            android:textColorHint="@color/text_result_color"
+            android:textIsSelectable="true"
+            android:textSize="@dimen/text_size_small"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <ImageView
+            android:id="@+id/btn_del"
+            android:layout_width="@dimen/backspace_imageview"
+            android:layout_height="@dimen/backspace_imageview"
+            android:layout_marginEnd="@dimen/layout_margin_medium"
+            android:src="@drawable/backspace"
+            android:visibility="invisible"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="@+id/user_expression"
+            app:layout_constraintTop_toTopOf="parent" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
 </androidx.constraintlayout.widget.ConstraintLayout>

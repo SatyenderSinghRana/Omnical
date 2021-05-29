@@ -1,67 +1,63 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    android:gravity="bottom"
-    android:layout_margin="8dp">
+    android:gravity="bottom">
 
     <!-- Row 0 -->
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="horizontal"
-        android:gravity="center">
+        android:orientation="horizontal">
         <Button
             android:id="@+id/btn_clear"
-            style="@style/myGridButtonStyleNumbers"
-            android:background="@drawable/button_design"
-            android:text="C"/>
-        <Button
-            android:id="@+id/btn_del"
-            style="@style/myGridButtonStyleNumbers"
-            android:background="@drawable/button_design"
-            android:text="Del" />
+            style="@style/myGridButtonStyleOperator"
+            android:background="@drawable/button_state"
+            android:text="@string/button_clear"/>
         <Button
             android:id="@+id/btn_left_paran"
-            style="@style/myGridButtonStyleNumbers"
-            android:background="@drawable/button_design"
-            android:text="(" />
+            style="@style/myGridButtonStyleOperator"
+            android:background="@drawable/button_state"
+            android:text="@string/button_left_paran" />
         <Button
             android:id="@+id/btn_right_paran"
-            style="@style/myGridButtonStyleNumbers"
-            android:background="@drawable/button_design"
-            android:text=")" />
+            style="@style/myGridButtonStyleOperator"
+            android:background="@drawable/button_state"
+            android:text="@string/button_right_paran" />
+        <Button
+            android:id="@+id/btn_divide"
+            style="@style/myGridButtonStyleOperator"
+            android:background="@drawable/button_state"
+            android:text="@string/button_divide" />
     </LinearLayout>
 
     <!-- Row 1 -->
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="horizontal"
-        android:gravity="center">
+        android:orientation="horizontal">
         <Button
             android:id="@+id/btn_7"
-            style="@style/myGridButtonStyleNumbers"
-            android:background="@drawable/button_design"
-            android:text="7"/>
+            style="@style/myGridButtonStyleNumber"
+            android:background="@drawable/button_state"
+            android:text="@string/button_seven"/>
         <Button
             android:id="@+id/btn_8"
-            style="@style/myGridButtonStyleNumbers"
-            android:background="@drawable/button_design"
-            android:text="8" />
+            style="@style/myGridButtonStyleNumber"
+            android:background="@drawable/button_state"
+            android:text="@string/button_eight" />
         <Button
             android:id="@+id/btn_9"
-            style="@style/myGridButtonStyleNumbers"
-            android:background="@drawable/button_design"
-            android:text="9" />
+            style="@style/myGridButtonStyleNumber"
+            android:background="@drawable/button_state"
+            android:text="@string/button_nine" />
         <Button
-            android:id="@+id/btn_divide"
-            style="@style/myGridButtonStyleOperations"
-            android:background="@drawable/button_design_colored"
-            android:text="/" />
+            android:id="@+id/btn_multiply"
+            style="@style/myGridButtonStyleOperator"
+            android:background="@drawable/button_state"
+            android:text="@string/button_multiply" />
     </LinearLayout>
 
     <!-- Row 2 -->
@@ -71,24 +67,24 @@
         android:orientation="horizontal">
         <Button
             android:id="@+id/btn_4"
-            style="@style/myGridButtonStyleNumbers"
-            android:background="@drawable/button_design"
-            android:text="4" />
+            style="@style/myGridButtonStyleNumber"
+            android:background="@drawable/button_state"
+            android:text="@string/button_four" />
         <Button
             android:id="@+id/btn_5"
-            style="@style/myGridButtonStyleNumbers"
-            android:background="@drawable/button_design"
-            android:text="5" />
+            style="@style/myGridButtonStyleNumber"
+            android:background="@drawable/button_state"
+            android:text="@string/button_five" />
         <Button
             android:id="@+id/btn_6"
-            style="@style/myGridButtonStyleNumbers"
-            android:background="@drawable/button_design"
-            android:text="6" />
+            style="@style/myGridButtonStyleNumber"
+            android:background="@drawable/button_state"
+            android:text="@string/button_six" />
         <Button
-            android:id="@+id/btn_multiply"
-            style="@style/myGridButtonStyleOperations"
-            android:background="@drawable/button_design_colored"
-            android:text="x" />
+            android:id="@+id/btn_minus"
+            style="@style/myGridButtonStyleOperator"
+            android:background="@drawable/button_state"
+            android:text="@string/button_minus" />
     </LinearLayout>
 
     <!-- Row 3 -->
@@ -98,24 +94,24 @@
         android:orientation="horizontal">
         <Button
             android:id="@+id/btn_1"
-            style="@style/myGridButtonStyleNumbers"
-            android:background="@drawable/button_design"
-            android:text="1" />
+            style="@style/myGridButtonStyleNumber"
+            android:background="@drawable/button_state"
+            android:text="@string/button_one" />
         <Button
             android:id="@+id/btn_2"
-            style="@style/myGridButtonStyleNumbers"
-            android:background="@drawable/button_design"
-            android:text="2" />
+            style="@style/myGridButtonStyleNumber"
+            android:background="@drawable/button_state"
+            android:text="@string/button_two" />
         <Button
             android:id="@+id/btn_3"
-            style="@style/myGridButtonStyleNumbers"
-            android:background="@drawable/button_design"
-            android:text="3" />
+            style="@style/myGridButtonStyleNumber"
+            android:background="@drawable/button_state"
+            android:text="@string/button_three" />
         <Button
-            android:id="@+id/btn_minus"
-            style="@style/myGridButtonStyleOperations"
-            android:background="@drawable/button_design_colored"
-            android:text="-" />
+            android:id="@+id/btn_plus"
+            style="@style/myGridButtonStyleOperator"
+            android:background="@drawable/button_state"
+            android:text="@string/button_plus" />
     </LinearLayout>
 
     <!-- Row 4 -->
@@ -123,29 +119,26 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="horizontal">
-
         <Button
-            android:id="@+id/btn_dot"
-            style="@style/myGridButtonStyleOperations"
-            android:background="@drawable/button_design"
-            android:textSize="18sp"
-            android:text="." />
-
+            android:id="@+id/btn_00"
+            style="@style/myGridButtonStyleNumber"
+            android:background="@drawable/button_state"
+            android:text="@string/button_double_zero" />
         <Button
             android:id="@+id/btn_0"
-            style="@style/myGridButtonStyleNumbers"
-            android:background="@drawable/button_design"
-            android:text="0" />
+            style="@style/myGridButtonStyleNumber"
+            android:background="@drawable/button_state"
+            android:text="@string/button_zero" />
+        <Button
+            android:id="@+id/btn_dot"
+            style="@style/myGridButtonStyleNumber"
+            android:textSize="18sp"
+            android:background="@drawable/button_state"
+            android:text="@string/button_decimal" />
         <Button
             android:id="@+id/btn_equal"
-            style="@style/myGridButtonStyleOperations"
-            android:background="@drawable/button_design_colored"
-            android:text="=" />
-        <Button
-            android:id="@+id/btn_plus"
-            style="@style/myGridButtonStyleOperations"
-            android:layout_height="wrap_content"
-            android:background="@drawable/button_design_colored"
-            android:text="+" />
+            style="@style/myGridButtonStyleEqualTo"
+            android:background="@drawable/button_state"
+            android:text="@string/button_equal_to" />
     </LinearLayout>
 </LinearLayout>

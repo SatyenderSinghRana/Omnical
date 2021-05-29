@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <dimen name="textview_space">16dp</dimen>
+    <dimen name="layout_margin_small">8dp</dimen>
+    <dimen name="layout_margin_medium">16dp</dimen>
+    <dimen name="layout_margin_large">40dp</dimen>
+    <dimen name="text_size_small">22sp</dimen>
+    <dimen name="text_size_medium">30sp</dimen>
+    <dimen name="text_size_large">40sp</dimen>
+    <dimen name="textview_padding_small">8dp</dimen>
+    <dimen name="textview_padding_medium">16dp</dimen>
+    <dimen name="textview_padding_large">60dp</dimen>
+    <dimen name="backspace_imageview">25dp</dimen>
+</resources>
