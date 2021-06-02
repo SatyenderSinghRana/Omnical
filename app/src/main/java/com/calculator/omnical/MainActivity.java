@@ -13,14 +13,10 @@ import android.widget.TextView;
 
 import androidx.appcompat.app.AppCompatActivity;
 
-import com.calculator.omnical.databinding.ActivityMainBinding;
-
 import java.util.ArrayList;
 
 public class MainActivity extends AppCompatActivity {
-    private ActivityMainBinding binding;
-
-    Button btn_00, btn_0, btn_1, btn_2, btn_3, btn_4, btn_5, btn_6, btn_7, btn_8, btn_9,
+        Button btn_00, btn_0, btn_1, btn_2, btn_3, btn_4, btn_5, btn_6, btn_7, btn_8, btn_9,
             btn_clear, btn_plus, btn_minus, btn_multiply, btn_divide, btn_equal,
             btn_dot, btn_left_bracket, btn_right_bracket;
 
@@ -33,8 +29,7 @@ public class MainActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        binding = ActivityMainBinding.inflate(getLayoutInflater());
-        setContentView(binding.getRoot());
+        setContentView(R.layout.activity_main);
 
         initializeViews();
         setListeners();
