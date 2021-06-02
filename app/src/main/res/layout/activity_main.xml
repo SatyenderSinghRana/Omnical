@@ -5,15 +5,13 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/app_background"
-    tools:context="com.example.omnical.MainActivity">
+    tools:context="com.calculator.omnical.MainActivity">
 
     <FrameLayout
         android:id="@+id/top_frame_layout"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:background="@color/text_display_color"
-        android:paddingStart="@dimen/textview_padding_medium"
-        android:paddingEnd="@dimen/textview_padding_medium"
         android:paddingTop="@dimen/textview_padding_large"
         android:paddingBottom="@dimen/textview_padding_medium"
         app:layout_constraintEnd_toEndOf="parent"
