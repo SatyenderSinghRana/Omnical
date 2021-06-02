@@ -21,8 +21,9 @@
     <string name="button_multiply">x</string>
     <string name="button_divide">/</string>
     <string name="button_clear">C</string>
-    <string name="button_left_paran">(</string>
-    <string name="button_right_paran">)</string>
+    <string name="button_left_bracket">(</string>
+    <string name="button_right_bracket">)</string>
     <string name="button_equal_to">=</string>
     <string name="change_theme">Theme</string>
+    <string name="delete">Delete</string>
 </resources>
