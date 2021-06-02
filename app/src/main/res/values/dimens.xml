@@ -4,11 +4,14 @@
     <dimen name="layout_margin_small">8dp</dimen>
     <dimen name="layout_margin_medium">16dp</dimen>
     <dimen name="layout_margin_large">40dp</dimen>
-    <dimen name="text_size_small">22sp</dimen>
-    <dimen name="text_size_medium">30sp</dimen>
-    <dimen name="text_size_large">40sp</dimen>
+    <dimen name="layout_padding_small">4dp</dimen>
+    <dimen name="layout_padding_medium">8dp</dimen>
+    <dimen name="layout_padding_large">16dp</dimen>
+    <dimen name="text_size_small">16sp</dimen>
+    <dimen name="text_size_medium">20sp</dimen>
+    <dimen name="text_size_large">36sp</dimen>
     <dimen name="textview_padding_small">8dp</dimen>
     <dimen name="textview_padding_medium">16dp</dimen>
     <dimen name="textview_padding_large">60dp</dimen>
-    <dimen name="backspace_imageview">25dp</dimen>
+    <dimen name="backspace_imageview">48dp</dimen>
 </resources>
