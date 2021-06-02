@@ -1,4 +1,4 @@
-package com.example.omnical;
+package com.calculator.omnical;
 
 import android.annotation.SuppressLint;
 import android.content.Context;
@@ -6,6 +6,7 @@ import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.text.Editable;
 import android.text.TextWatcher;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
@@ -13,9 +14,12 @@ import android.widget.TextView;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.calculator.omnical.databinding.ActivityMainBinding;
+
 import java.util.ArrayList;
 
 public class MainActivity extends AppCompatActivity {
+    private ActivityMainBinding binding;
 
     Button btn_00, btn_0, btn_1, btn_2, btn_3, btn_4, btn_5, btn_6, btn_7, btn_8, btn_9,
             btn_clear, btn_plus, btn_minus, btn_multiply, btn_divide, btn_equal,
@@ -30,9 +34,12 @@ public class MainActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
+        binding = ActivityMainBinding.inflate(getLayoutInflater());
+        setContentView(binding.getRoot());
+
         initializeViews();
         setListeners();
+
 
         sharedPrefs = getSharedPreferences("SHARED PREFS", Context.MODE_PRIVATE);
 
@@ -40,6 +47,9 @@ public class MainActivity extends AppCompatActivity {
         answer = sharedPrefs.getString("ANSWER", "");
         tv_expression.setText(expression);
         tv_answer.setText(answer);
+        if (!expression.equals("")) {
+            img_btn_del.setVisibility(View.VISIBLE);
+        }
 
         tv_expression.addTextChangedListener(new TextWatcher() {
             @Override
@@ -94,47 +104,91 @@ public class MainActivity extends AppCompatActivity {
     private void setListeners() {
 
         btn_00.setOnClickListener(v -> {
-            expression = expression + "00";
+            if (expression.endsWith(")")) {
+                expression += "x00";
+            } else {
+                expression += "00";
+            }
             tv_expression.setText(expression);
         });
         btn_0.setOnClickListener(v -> {
-            expression = expression + "0";
+            if (expression.endsWith(")")) {
+                expression += "x0";
+            } else {
+                expression += "0";
+            }
             tv_expression.setText(expression);
         });
         btn_1.setOnClickListener(v -> {
-            expression = expression + "1";
+            if (expression.endsWith(")")) {
+                expression += "x1";
+            } else {
+                expression += "1";
+            }
             tv_expression.setText(expression);
         });
         btn_2.setOnClickListener(v -> {
-            expression = expression + "2";
+            if (expression.endsWith(")")) {
+                expression += "x2";
+            } else {
+                expression += "2";
+            }
             tv_expression.setText(expression);
         });
         btn_3.setOnClickListener(v -> {
-            expression = expression + "3";
+            if (expression.endsWith(")")) {
+                expression += "x3";
+            } else {
+                expression += "3";
+            }
             tv_expression.setText(expression);
         });
         btn_4.setOnClickListener(v -> {
-            expression = expression + "4";
+            if (expression.endsWith(")")) {
+                expression += "x4";
+            } else {
+                expression += "4";
+            }
             tv_expression.setText(expression);
         });
         btn_5.setOnClickListener(v -> {
-            expression = expression + "5";
+            if (expression.endsWith(")")) {
+                expression += "x5";
+            } else {
+                expression += "5";
+            }
             tv_expression.setText(expression);
         });
         btn_6.setOnClickListener(v -> {
-            expression = expression + "6";
+            if (expression.endsWith(")")) {
+                expression += "x6";
+            } else {
+                expression += "6";
+            }
             tv_expression.setText(expression);
         });
         btn_7.setOnClickListener(v -> {
-            expression = expression + "7";
+            if (expression.endsWith(")")) {
+                expression += "x7";
+            } else {
+                expression += "7";
+            }
             tv_expression.setText(expression);
         });
         btn_8.setOnClickListener(v -> {
-            expression = expression + "8";
+            if (expression.endsWith(")")) {
+                expression += "x8";
+            } else {
+                expression += "8";
+            }
             tv_expression.setText(expression);
         });
         btn_9.setOnClickListener(v -> {
-            expression = expression + "9";
+            if (expression.endsWith(")")) {
+                expression += "x9";
+            } else {
+                expression += "9";
+            }
             tv_expression.setText(expression);
         });
         btn_dot.setOnClickListener(v -> {
@@ -147,11 +201,16 @@ public class MainActivity extends AppCompatActivity {
         btn_multiply.setOnClickListener(v -> checkOperator("x"));
         btn_divide.setOnClickListener(v -> checkOperator("/"));
         btn_left_bracket.setOnClickListener(v -> {
-            expression = expression + "(";
+            if (!expression.equals("") && (expression.endsWith(")") ||
+                    Character.isDigit(expression.charAt(expression.length() - 1)))) {
+                expression += "x(";
+            } else {
+                expression += "(";
+            }
             tv_expression.setText(expression);
         });
         btn_right_bracket.setOnClickListener(v -> {
-            expression = expression + ")";
+            expression += ")";
             tv_expression.setText(expression);
         });
 
@@ -168,6 +227,7 @@ public class MainActivity extends AppCompatActivity {
             editor.apply();
         });
         img_btn_del.setOnClickListener(v -> {
+
             if (expression.length() != 0) {
                 expression = expression.substring(0, expression.length() - 1);
                 tv_expression.setText(expression);
@@ -177,33 +237,35 @@ public class MainActivity extends AppCompatActivity {
             if (expression.length() == 0) {
                 tv_expression.setError(null);
             } else {
-                lastInput = expression.substring(expression.length() - 1);
-                if (lastInput.equals("+") || lastInput.equals("-") ||
-                        lastInput.equals("x") || lastInput.equals("/")) {
+                if (!expression.equals(sharedPrefs.getString("EXPRESSION", ""))) {
+                    lastInput = expression.substring(expression.length() - 1);
+                    if (lastInput.equals("+") || lastInput.equals("-") ||
+                            lastInput.equals("x") || lastInput.equals("/")) {
 
-                    tv_expression.requestFocus();
-                    tv_expression.setError("Invalid Expression!");
-                } else {
-                    tv_expression.setError(null);
-
-                    //get tokens from expression into ArrayList
-                    ArrayList<String> myTokens = createTokens(expression.replaceAll("\\s", ""));
-
-                    //parse tokens and get answer
-                    try {
-                        myTokens = evaluateParanthesis(myTokens, ")");
-                        myTokens = evaluateOperator(myTokens, "/");
-                        myTokens = evaluateOperator(myTokens, "x");
-                        myTokens = evaluateOperator(myTokens, "-");
-                        myTokens = evaluateOperator(myTokens, "+");
-                        answer = myTokens.get(0);
-                        if (answer.endsWith(".0"))
-                            answer = answer.substring(0, answer.length() - 2);
-                    } catch (Exception e) {
                         tv_expression.requestFocus();
-                        tv_expression.setError("Invalid Expression");
+                        tv_expression.setError("Invalid Expression!");
+                    } else {
+                        tv_expression.setError(null);
+
+                        //get tokens from expression into ArrayList
+                        ArrayList<String> myTokens = createTokens(expression.replaceAll("\\s", ""));
+
+                        //parse tokens and get answer
+                        try {
+                            myTokens = evaluateParanthesis(myTokens, ")");
+                            myTokens = evaluateOperator(myTokens, "/");
+                            myTokens = evaluateOperator(myTokens, "x");
+                            myTokens = evaluateOperator(myTokens, "-");
+                            myTokens = evaluateOperator(myTokens, "+");
+                            answer = myTokens.get(0);
+                            if (answer.endsWith(".0"))
+                                answer = answer.substring(0, answer.length() - 2);
+                        } catch (Exception e) {
+                            tv_expression.requestFocus();
+                            tv_expression.setError("Invalid Expression");
+                        }
+                        tv_answer.setText(answer);
                     }
-                    tv_answer.setText(answer);
                 }
             }
         });
@@ -280,6 +342,36 @@ public class MainActivity extends AppCompatActivity {
                 myTokens.add("" + e.charAt(i));
             }
         }
+        /*
+        // if token before or after paranthesis is number
+        // insert * between them in the arraylist
+        int tokenSize = myTokens.size();
+        for (int j = 1; j < tokenSize; j++) {
+            if (myTokens.get(j).equals("(")) {
+                try {
+                    if (!(myTokens.get(j - 1).equals("+") || myTokens.get(j - 1).equals("-") ||
+                            myTokens.get(j - 1).equals("x") || myTokens.get(j - 1).equals("/") ||
+                            myTokens.get(j - 1).equals("("))) {
+                        myTokens.add(j, "x");
+                        tokenSize++;
+                    }
+                } catch (Exception ignored) {
+                }
+            }
+            if (myTokens.get(j).equals(")") && j < myTokens.size() - 1) {
+                try {
+                    if (!(myTokens.get(j + 1).equals("+") || myTokens.get(j + 1).equals("-") ||
+                            myTokens.get(j + 1).equals("x") || myTokens.get(j + 1).equals("/") ||
+                            myTokens.get(j + 1).equals(")"))) {
+                        myTokens.add(j, "x");
+                        tokenSize++;
+                    }
+                } catch (Exception ignored) {
+                }
+            }
+        }
+        Log.d("tokens", "" + myTokens);
+        */
         return myTokens;
     }
 
