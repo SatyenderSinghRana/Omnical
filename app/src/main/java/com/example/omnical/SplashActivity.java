@@ -1,4 +1,4 @@
-package com.example.omnical;
+package com.calculator.omnical;
 
 import androidx.appcompat.app.AppCompatActivity;
 
