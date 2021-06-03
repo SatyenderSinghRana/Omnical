@@ -8,6 +8,10 @@ import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Looper;
+/*
+    Splash Screen implementation
+    Needs to be changed/modified later
+*/
 
 public class SplashActivity extends AppCompatActivity {
     @Override
@@ -21,10 +25,11 @@ public class SplashActivity extends AppCompatActivity {
             editor.putBoolean("firstRun", true);
             editor.apply();
 
+            int splashScreenDuration = 1000;
             new Handler(Looper.getMainLooper()).postDelayed(() -> {
                 Intent i = new Intent(SplashActivity.this, MainActivity.class);
                 startActivity(i);
-            }, 1000);
+            }, splashScreenDuration);
         } else {
             Intent i = new Intent(SplashActivity.this, MainActivity.class);
             startActivity(i);

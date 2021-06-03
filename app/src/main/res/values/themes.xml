@@ -17,6 +17,7 @@
         <item name="android:textStyle">bold</item>
         <item name="android:gravity">center</item>
         <item name="android:layout_weight">1</item>
+        <item name="rippleColor">@color/button_ripple_color</item>
         <item name="android:textColor">@color/number_button_color</item>
     </style>
 
