@@ -6,6 +6,7 @@ import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.text.Editable;
 import android.text.TextWatcher;
+import android.util.Log;
 import android.view.View;
 
 import androidx.appcompat.app.AppCompatActivity;
@@ -25,7 +26,9 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         binding = ActivityMainBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
-
+        binding.userExpression.animate().translationZ(6);
+        binding.calculatedAnswer.animate().translationZ(6);
+        binding.btnDel.animate().translationZ(6);
         setListeners();
 
         sharedPrefs = getSharedPreferences("SHARED PREFS", Context.MODE_PRIVATE);
@@ -150,7 +153,9 @@ public class MainActivity extends AppCompatActivity {
             binding.userExpression.setText(expression);
         });
         binding.btnDot.setOnClickListener(v -> {
-            expression = expression + ".";
+            if(!expression.endsWith(".")) {
+                expression = expression + ".";
+            }
             binding.userExpression.setText(expression);
         });
 
@@ -158,6 +163,7 @@ public class MainActivity extends AppCompatActivity {
         binding.btnMinus.setOnClickListener(v -> checkOperator("-"));
         binding.btnMultiply.setOnClickListener(v -> checkOperator("x"));
         binding.btnDivide.setOnClickListener(v -> checkOperator("/"));
+
         binding.btnLeftBracket.setOnClickListener(v -> {
             if (!expression.equals("") && (expression.endsWith(")") ||
                     Character.isDigit(expression.charAt(expression.length() - 1)))) {
@@ -167,6 +173,7 @@ public class MainActivity extends AppCompatActivity {
             }
             binding.userExpression.setText(expression);
         });
+
         binding.btnRightBracket.setOnClickListener(v -> {
             expression += ")";
             binding.userExpression.setText(expression);
@@ -243,6 +250,20 @@ public class MainActivity extends AppCompatActivity {
                 binding.userExpression.requestFocus();
                 binding.userExpression.setError("Invalid Operator: " + operator);
             }
+            /*
+            // + or - is entered
+            if (operator.equals("-")) {
+                expression = operator;
+                binding.userExpression.setError(null);
+                binding.userExpression.setText(expression);
+            } else {
+                //if x or / is entered , show error
+                if (operator.equals("x") || operator.equals("/")) {
+                    binding.userExpression.requestFocus();
+                    binding.userExpression.setError("Invalid Operator: " + operator);
+                }
+            }
+            */
         } else {
             //when input size = 1
             if (expression.length() == 1) {
@@ -282,7 +303,7 @@ public class MainActivity extends AppCompatActivity {
         }
     }
 
-    //Lexer
+    //Take the expressiion and divide it into tokens
     public ArrayList<String> createTokens(String e) {
         ArrayList<String> myTokens = new ArrayList<>();
         StringBuilder word = new StringBuilder();
@@ -300,16 +321,18 @@ public class MainActivity extends AppCompatActivity {
                 myTokens.add("" + e.charAt(i));
             }
         }
+        Log.w("value: ", String.valueOf(myTokens));
         return myTokens;
     }
 
-    //count
+    //Count the occurrence of operator in the expression
     public int countOperator(String operator, ArrayList<String> tokens) {
         int count = 0;
         for (String token : tokens) if (token.equals(operator)) count++;
         return count;
     }
 
+    //Evaluate all the brackets in the expression
     public ArrayList<String> evaluateBrackets(ArrayList<String> tokens, String operator) {
         int count = countOperator(operator, tokens);
         if (count != 0) {
@@ -330,6 +353,7 @@ public class MainActivity extends AppCompatActivity {
         return tokens;
     }
 
+    //Find an operator and evaluate the left and right values, return a smaller expression
     public ArrayList<String> evaluateOperator(ArrayList<String> tokens, String operator) {
         int count = countOperator(operator, tokens);
         if (count != 0) {
@@ -340,7 +364,9 @@ public class MainActivity extends AppCompatActivity {
                 try {
                     leftValue = tokens.get(operatorIndex - 1);
                 } catch (Exception exception) {
-                    tokens.set(operatorIndex + 1, "-" + rightValue);
+                    if(operatorIndex == 0 && !operator.equals("+")) {
+                        tokens.set(operatorIndex + 1, "-" + rightValue);
+                    }
                     tokens.remove(operatorIndex);
                     continue;
                 }
@@ -354,16 +380,16 @@ public class MainActivity extends AppCompatActivity {
                         //multiply
                         value = Float.toString(Float.parseFloat(leftValue) * Float.parseFloat(rightValue));
                         break;
-                    case "+":
-                        //sum
-                        if (!(leftValue.equals("(") || leftValue.equals(")"))) {
-                            value = Float.toString(Float.parseFloat(leftValue) + Float.parseFloat(rightValue));
-                        }
-                        break;
                     case "-":
                         //subtract
                         if (!(leftValue.equals("(") || leftValue.equals(")"))) {
                             value = Float.toString(Float.parseFloat(leftValue) - Float.parseFloat(rightValue));
+                        }
+                        break;
+                    case "+":
+                        //sum
+                        if (!(leftValue.equals("(") || leftValue.equals(")"))) {
+                            value = Float.toString(Float.parseFloat(leftValue) + Float.parseFloat(rightValue));
                         }
                         break;
                 }
@@ -375,6 +401,7 @@ public class MainActivity extends AppCompatActivity {
         return tokens;
     }
 
+    //When app pauses store the values of expression and answer
     @Override
     protected void onPause() {
         super.onPause();

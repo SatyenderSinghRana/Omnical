@@ -13,5 +13,5 @@ public class ExampleUnitTest {
     @Test
     public void addition_isCorrect() {
         assertEquals(4, 2 + 2);
-    }
+    }//add, commit, push, pull, fetch origin, cherry pick, merge, rebase
 }
