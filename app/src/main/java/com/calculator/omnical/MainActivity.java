@@ -17,34 +17,34 @@ import java.util.ArrayList;
 public class MainActivity extends AppCompatActivity {
     private ActivityMainBinding binding;
 
-    String expression = "";
-    String answer = "";
-    String lastInput = "";
-    String spExpression = "EXPRESSION";
-    String spAnswer = "ANSWER";
+    private String expression = "";
+    private String answer = "";
+    private String lastInput = "";
+    private String spExpression = "EXPRESSION";
+    private String spAnswer = "ANSWER";
 
-    String invalidExpression;
-    String invalidOperator;
+    private String invalidExpression;
+    private String invalidOperator;
 
-    String doubleZero;
-    String zero;
-    String one;
-    String two;
-    String three;
-    String four;
-    String five;
-    String six;
-    String seven;
-    String eight;
-    String nine;
-    String plus;
-    String minus;
-    String multiply;
-    String divide;
-    String decimal;
+    private String doubleZero;
+    private String zero;
+    private String one;
+    private String two;
+    private String three;
+    private String four;
+    private String five;
+    private String six;
+    private String seven;
+    private String eight;
+    private String nine;
+    private String plus;
+    private String minus;
+    private String multiply;
+    private String divide;
+    private String decimal;
 
-    String rightParenthesis;
-    String leftParenthesis;
+    private String rightParenthesis;
+    private String leftParenthesis;
 
     SharedPreferences sharedPrefs;
 
