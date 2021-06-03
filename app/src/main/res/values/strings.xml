@@ -21,15 +21,15 @@
     <string name="button_multiply">x</string>
     <string name="button_divide">/</string>
     <string name="button_clear">C</string>
-    <string name="button_left_bracket">(</string>
-    <string name="button_right_bracket">)</string>
+    <string name="button_left_parenthesis">(</string>
+    <string name="button_right_parenthesis">)</string>
     <string name="button_equal_to">=</string>
     <string name="change_theme">Theme</string>
     <string name="delete">Delete</string>
     <string name="expression">Expression</string>
     <string name="clear">Clear all</string>
-    <string name="left_paranthesis">Left Paranthesis</string>
-    <string name="right_paranthesis">Right Paranthesis</string>
+    <string name="left_parenthesis">Left Parenthesis</string>
+    <string name="right_parenthesis">Right Parenthesis</string>
     <string name="divide">Divide</string>
     <string name="seven">seven</string>
     <string name="eight">Eight</string>

@@ -98,8 +98,8 @@
         android:id="@+id/btn_left_bracket"
         style="@style/myGridButtonStyleOperator"
         android:background="@drawable/button_state"
-        android:contentDescription="@string/left_paranthesis"
-        android:text="@string/button_left_bracket"
+        android:contentDescription="@string/left_parenthesis"
+        android:text="@string/button_left_parenthesis"
         app:layout_constraintBottom_toTopOf="@+id/btn_8"
         app:layout_constraintEnd_toStartOf="@+id/guideline2"
         app:layout_constraintStart_toStartOf="@+id/guideline3" />
@@ -108,8 +108,8 @@
         android:id="@+id/btn_right_bracket"
         style="@style/myGridButtonStyleOperator"
         android:background="@drawable/button_state"
-        android:contentDescription="@string/right_paranthesis"
-        android:text="@string/button_right_bracket"
+        android:contentDescription="@string/right_parenthesis"
+        android:text="@string/button_right_parenthesis"
         app:layout_constraintBottom_toTopOf="@+id/btn_9"
         app:layout_constraintEnd_toStartOf="@+id/guideline4"
         app:layout_constraintStart_toStartOf="@+id/guideline2" />

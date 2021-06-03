@@ -18,33 +18,35 @@ public class MainActivity extends AppCompatActivity {
     private ActivityMainBinding binding;
 
     String expression = "";
-    String invalidExpression = this.getString(R.string.invalidExpression);
-    String invalidOperator = this.getString(R.string.invalidOperator);
     String answer = "";
     String lastInput = "";
     String spExpression = "EXPRESSION";
     String spAnswer = "ANSWER";
+
+    String invalidExpression;
+    String invalidOperator;
+
+    String doubleZero;
+    String zero;
+    String one;
+    String two;
+    String three;
+    String four;
+    String five;
+    String six;
+    String seven;
+    String eight;
+    String nine;
+    String plus;
+    String minus;
+    String multiply;
+    String divide;
+    String decimal;
+
+    String rightParenthesis;
+    String leftParenthesis;
+
     SharedPreferences sharedPrefs;
-    private final String doubleZero = this.getString(R.string.button_double_zero);
-    private final String zero = this.getString(R.string.button_zero);
-    private final String one = this.getString(R.string.button_one);
-    private final String two = this.getString(R.string.button_two);
-    private final String three = this.getString(R.string.button_three);
-    private final String four = this.getString(R.string.button_four);
-    private final String five = this.getString(R.string.button_five);
-    private final String six = this.getString(R.string.button_six);
-    private final String seven = this.getString(R.string.button_seven);
-    private final String eight = this.getString(R.string.button_eight);
-    private final String nine = this.getString(R.string.button_nine);
-    private final String plus = this.getString(R.string.button_plus);
-    private final String minus = this.getString(R.string.button_minus);
-    private final String multiply = this.getString(R.string.button_multiply);
-    private final String divide = this.getString(R.string.button_divide);
-    private final String decimal = this.getString(R.string.button_decimal);
-
-    private final String rightBracket = this.getString(R.string.button_right_bracket);
-    private final String leftBracket = this.getString(R.string.button_left_bracket);
-
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -52,6 +54,29 @@ public class MainActivity extends AppCompatActivity {
         binding = ActivityMainBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
         setListeners();
+
+        invalidExpression = this.getString(R.string.invalidExpression);
+        invalidOperator = this.getString(R.string.invalidOperator);
+
+        doubleZero = this.getString(R.string.button_double_zero);
+        zero = this.getString(R.string.button_zero);
+        one = this.getString(R.string.button_one);
+        two = this.getString(R.string.button_two);
+        three = this.getString(R.string.button_three);
+        four = this.getString(R.string.button_four);
+        five = this.getString(R.string.button_five);
+        six = this.getString(R.string.button_six);
+        seven = this.getString(R.string.button_seven);
+        eight = this.getString(R.string.button_eight);
+        nine = this.getString(R.string.button_nine);
+        plus = this.getString(R.string.button_plus);
+        minus = this.getString(R.string.button_minus);
+        multiply = this.getString(R.string.button_multiply);
+        divide = this.getString(R.string.button_divide);
+        decimal = this.getString(R.string.button_decimal);
+
+        rightParenthesis = this.getString(R.string.button_right_parenthesis);
+        leftParenthesis = this.getString(R.string.button_left_parenthesis);
 
         sharedPrefs = getSharedPreferences("SHARED PREFS", Context.MODE_PRIVATE);
 
@@ -89,7 +114,7 @@ public class MainActivity extends AppCompatActivity {
     private void setListeners() {
 
         binding.btn00.setOnClickListener(v -> {
-            if (expression.endsWith(rightBracket)) {
+            if (expression.endsWith(rightParenthesis)) {
                 expression += multiply + doubleZero;
             } else {
                 expression += doubleZero;
@@ -97,7 +122,7 @@ public class MainActivity extends AppCompatActivity {
             binding.userExpression.setText(expression);
         });
         binding.btn0.setOnClickListener(v -> {
-            if (expression.endsWith(rightBracket)) {
+            if (expression.endsWith(rightParenthesis)) {
                 expression += multiply + zero;
             } else {
                 expression += zero;
@@ -105,7 +130,7 @@ public class MainActivity extends AppCompatActivity {
             binding.userExpression.setText(expression);
         });
         binding.btn1.setOnClickListener(v -> {
-            if (expression.endsWith(rightBracket)) {
+            if (expression.endsWith(rightParenthesis)) {
                 expression += multiply + one;
             } else {
                 expression += one;
@@ -113,7 +138,7 @@ public class MainActivity extends AppCompatActivity {
             binding.userExpression.setText(expression);
         });
         binding.btn2.setOnClickListener(v -> {
-            if (expression.endsWith(rightBracket)) {
+            if (expression.endsWith(rightParenthesis)) {
                 expression += multiply + two;
             } else {
                 expression += two;
@@ -121,7 +146,7 @@ public class MainActivity extends AppCompatActivity {
             binding.userExpression.setText(expression);
         });
         binding.btn3.setOnClickListener(v -> {
-            if (expression.endsWith(rightBracket)) {
+            if (expression.endsWith(rightParenthesis)) {
                 expression += multiply + three;
             } else {
                 expression += three;
@@ -129,7 +154,7 @@ public class MainActivity extends AppCompatActivity {
             binding.userExpression.setText(expression);
         });
         binding.btn4.setOnClickListener(v -> {
-            if (expression.endsWith(rightBracket)) {
+            if (expression.endsWith(rightParenthesis)) {
                 expression += multiply + four;
             } else {
                 expression += four;
@@ -137,7 +162,7 @@ public class MainActivity extends AppCompatActivity {
             binding.userExpression.setText(expression);
         });
         binding.btn5.setOnClickListener(v -> {
-            if (expression.endsWith(rightBracket)) {
+            if (expression.endsWith(rightParenthesis)) {
                 expression += multiply + five;
             } else {
                 expression += five;
@@ -145,7 +170,7 @@ public class MainActivity extends AppCompatActivity {
             binding.userExpression.setText(expression);
         });
         binding.btn6.setOnClickListener(v -> {
-            if (expression.endsWith(rightBracket)) {
+            if (expression.endsWith(rightParenthesis)) {
                 expression += multiply + six;
             } else {
                 expression += six;
@@ -153,7 +178,7 @@ public class MainActivity extends AppCompatActivity {
             binding.userExpression.setText(expression);
         });
         binding.btn7.setOnClickListener(v -> {
-            if (expression.endsWith(rightBracket)) {
+            if (expression.endsWith(rightParenthesis)) {
                 expression += multiply + seven;
             } else {
                 expression += seven;
@@ -161,7 +186,7 @@ public class MainActivity extends AppCompatActivity {
             binding.userExpression.setText(expression);
         });
         binding.btn8.setOnClickListener(v -> {
-            if (expression.endsWith(rightBracket)) {
+            if (expression.endsWith(rightParenthesis)) {
                 expression += multiply + eight;
             } else {
                 expression += eight;
@@ -169,7 +194,7 @@ public class MainActivity extends AppCompatActivity {
             binding.userExpression.setText(expression);
         });
         binding.btn9.setOnClickListener(v -> {
-            if (expression.endsWith(rightBracket)) {
+            if (expression.endsWith(rightParenthesis)) {
                 expression += multiply + nine;
             } else {
                 expression += nine;
@@ -189,17 +214,17 @@ public class MainActivity extends AppCompatActivity {
         binding.btnDivide.setOnClickListener(v -> checkOperator(divide));
 
         binding.btnLeftBracket.setOnClickListener(v -> {
-            if (!expression.equals("") && (expression.endsWith(rightBracket) ||
+            if (!expression.equals("") && (expression.endsWith(rightParenthesis) ||
                     Character.isDigit(expression.charAt(expression.length() - 1)))) {
-                expression += multiply + leftBracket;
+                expression += multiply + leftParenthesis;
             } else {
-                expression += leftBracket;
+                expression += leftParenthesis;
             }
             binding.userExpression.setText(expression);
         });
 
         binding.btnRightBracket.setOnClickListener(v -> {
-            expression += rightBracket;
+            expression += rightParenthesis;
             binding.userExpression.setText(expression);
         });
 
@@ -241,7 +266,7 @@ public class MainActivity extends AppCompatActivity {
 
                         //parse tokens and get answer
                         try {
-                            myTokens = evaluateBrackets(myTokens, rightBracket);
+                            myTokens = evaluateBrackets(myTokens, rightParenthesis);
                             myTokens = evaluateOperator(myTokens, divide);
                             myTokens = evaluateOperator(myTokens, multiply);
                             myTokens = evaluateOperator(myTokens, minus);
@@ -347,9 +372,9 @@ public class MainActivity extends AppCompatActivity {
         int count = countOperator(operator, tokens);
         if (count != 0) {
             for (int i = 0; i < count; i++) {
-                int indexOfRightParan = tokens.indexOf(rightBracket);
+                int indexOfRightParan = tokens.indexOf(rightParenthesis);
                 ArrayList<String> temp = new ArrayList<>(tokens.subList(0, indexOfRightParan));
-                int indexOfLeftParan = temp.lastIndexOf(leftBracket);
+                int indexOfLeftParan = temp.lastIndexOf(leftParenthesis);
                 ArrayList<String> subToken = new ArrayList<>(temp.subList(indexOfLeftParan + 1, indexOfRightParan));
                 subToken = evaluateOperator(subToken, divide);
                 subToken = evaluateOperator(subToken, multiply);
@@ -381,7 +406,7 @@ public class MainActivity extends AppCompatActivity {
                     continue;
                 }
                 String value = "";
-                boolean checkBrackets = !(leftValue.equals(leftBracket) || leftValue.equals(rightBracket));
+                boolean checkBrackets = !(leftValue.equals(leftParenthesis) || leftValue.equals(rightParenthesis));
                 switch (operator) {
                     case "/":
                         //divide
