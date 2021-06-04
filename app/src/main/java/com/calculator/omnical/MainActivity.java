@@ -122,7 +122,6 @@ public class MainActivity extends AppCompatActivity {
     public void buttonPressed(View view) {
         int id = view.getId();
         String PASSED_VALUE = view.getTag().toString();
-        // will remove this comment once I optimize button listeners
         if (id == R.id.btn_00 || id == R.id.btn_0 || id == R.id.btn_1 || id == R.id.btn_2 || id == R.id.btn_3 || id == R.id.btn_4
                 || id == R.id.btn_5 || id == R.id.btn_6 || id == R.id.btn_7 || id == R.id.btn_8 || id == R.id.btn_9) {
             if (EXPRESSION.endsWith(RIGHT_PARENTHESIS)) {
