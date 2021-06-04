@@ -19,9 +19,9 @@ import java.util.ArrayList;
  * 1) Take input from user and create tokens.
  * 2) Evaluate Parenthesis followed by /, x, - and +.
  * 3) Again check for /, x, - and + as expression can be like 2 - 1 x ( 5 x 3 )
- *    Step 3) checks the remaining elements after parenthesis is evaluated.
+ * Step 3) checks the remaining elements after parenthesis is evaluated.
  * 4) Finally display the result.
- *
+ * <p>
  * At different steps validations are inserted to get the desired behaviour of the calculator.
  */
 
@@ -63,7 +63,6 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         binding = ActivityMainBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
-        setListeners();
 
         INVALID_EXPRESSION = this.getString(R.string.invalidExpression);
         INVALID_OPERATOR = this.getString(R.string.invalidOperator);
@@ -122,131 +121,36 @@ public class MainActivity extends AppCompatActivity {
 
     public void buttonPressed(View view) {
         int id = view.getId();
+        String PASSED_VALUE = view.getTag().toString();
         // will remove this comment once I optimize button listeners
-    }
-
-    @SuppressLint("ClickableViewAccessibility")
-    private void setListeners() {
-
-        binding.btn00.setOnClickListener(v -> {
+        if (id == R.id.btn_00 || id == R.id.btn_0 || id == R.id.btn_1 || id == R.id.btn_2 || id == R.id.btn_3 || id == R.id.btn_4
+                || id == R.id.btn_5 || id == R.id.btn_6 || id == R.id.btn_7 || id == R.id.btn_8 || id == R.id.btn_9) {
             if (EXPRESSION.endsWith(RIGHT_PARENTHESIS)) {
-                EXPRESSION += MULTIPLY + DOUBLE_ZERO;
+                EXPRESSION += MULTIPLY + PASSED_VALUE;
             } else {
-                EXPRESSION += DOUBLE_ZERO;
+                EXPRESSION += PASSED_VALUE;
             }
             binding.userExpression.setText(EXPRESSION);
-        });
-        binding.btn0.setOnClickListener(v -> {
-            if (EXPRESSION.endsWith(RIGHT_PARENTHESIS)) {
-                EXPRESSION += MULTIPLY + ZERO;
-            } else {
-                EXPRESSION += ZERO;
-            }
-            binding.userExpression.setText(EXPRESSION);
-        });
-        binding.btn1.setOnClickListener(v -> {
-            if (EXPRESSION.endsWith(RIGHT_PARENTHESIS)) {
-                EXPRESSION += MULTIPLY + ONE;
-            } else {
-                EXPRESSION += ONE;
-            }
-            binding.userExpression.setText(EXPRESSION);
-        });
-        binding.btn2.setOnClickListener(v -> {
-            if (EXPRESSION.endsWith(RIGHT_PARENTHESIS)) {
-                EXPRESSION += MULTIPLY + TWO;
-            } else {
-                EXPRESSION += TWO;
-            }
-            binding.userExpression.setText(EXPRESSION);
-        });
-        binding.btn3.setOnClickListener(v -> {
-            if (EXPRESSION.endsWith(RIGHT_PARENTHESIS)) {
-                EXPRESSION += MULTIPLY + THREE;
-            } else {
-                EXPRESSION += THREE;
-            }
-            binding.userExpression.setText(EXPRESSION);
-        });
-        binding.btn4.setOnClickListener(v -> {
-            if (EXPRESSION.endsWith(RIGHT_PARENTHESIS)) {
-                EXPRESSION += MULTIPLY + FOUR;
-            } else {
-                EXPRESSION += FOUR;
-            }
-            binding.userExpression.setText(EXPRESSION);
-        });
-        binding.btn5.setOnClickListener(v -> {
-            if (EXPRESSION.endsWith(RIGHT_PARENTHESIS)) {
-                EXPRESSION += MULTIPLY + FIVE;
-            } else {
-                EXPRESSION += FIVE;
-            }
-            binding.userExpression.setText(EXPRESSION);
-        });
-        binding.btn6.setOnClickListener(v -> {
-            if (EXPRESSION.endsWith(RIGHT_PARENTHESIS)) {
-                EXPRESSION += MULTIPLY + SIX;
-            } else {
-                EXPRESSION += SIX;
-            }
-            binding.userExpression.setText(EXPRESSION);
-        });
-        binding.btn7.setOnClickListener(v -> {
-            if (EXPRESSION.endsWith(RIGHT_PARENTHESIS)) {
-                EXPRESSION += MULTIPLY + SEVEN;
-            } else {
-                EXPRESSION += SEVEN;
-            }
-            binding.userExpression.setText(EXPRESSION);
-        });
-        binding.btn8.setOnClickListener(v -> {
-            if (EXPRESSION.endsWith(RIGHT_PARENTHESIS)) {
-                EXPRESSION += MULTIPLY + EIGHT;
-            } else {
-                EXPRESSION += EIGHT;
-            }
-            binding.userExpression.setText(EXPRESSION);
-        });
-        binding.btn9.setOnClickListener(v -> {
-            if (EXPRESSION.endsWith(RIGHT_PARENTHESIS)) {
-                EXPRESSION += MULTIPLY + NINE;
-            } else {
-                EXPRESSION += NINE;
-            }
-            binding.userExpression.setText(EXPRESSION);
-        });
-        binding.btnDot.setOnClickListener(v -> {
+        } else if (id == R.id.btn_plus || id == R.id.btn_minus || id == R.id.btn_multiply || id == R.id.btn_divide) {
+            checkOperator(PASSED_VALUE);
+        } else if (id == R.id.btn_decimal) {
             if (!EXPRESSION.endsWith(DECIMAL)) {
-                EXPRESSION = EXPRESSION + DECIMAL;
+                EXPRESSION += PASSED_VALUE;
             }
             binding.userExpression.setText(EXPRESSION);
-        });
-
-        binding.btnPlus.setOnClickListener(v -> checkOperator(PLUS));
-        binding.btnMinus.setOnClickListener(v -> checkOperator(MINUS));
-        binding.btnMultiply.setOnClickListener(v -> checkOperator(MULTIPLY));
-        binding.btnDivide.setOnClickListener(v -> checkOperator(DIVIDE));
-
-        binding.btnLeftBracket.setOnClickListener(v -> {
+        } else if (id == R.id.btn_left_parenthesis) {
             if (!EXPRESSION.equals("") && (EXPRESSION.endsWith(RIGHT_PARENTHESIS) ||
                     Character.isDigit(EXPRESSION.charAt(EXPRESSION.length() - 1)))) {
-                EXPRESSION += MULTIPLY + LEFT_PARENTHESIS;
+                EXPRESSION += MULTIPLY + PASSED_VALUE;
             } else {
-                EXPRESSION += LEFT_PARENTHESIS;
+                EXPRESSION += PASSED_VALUE;
             }
             binding.userExpression.setText(EXPRESSION);
-        });
-
-        binding.btnRightBracket.setOnClickListener(v -> {
-            EXPRESSION += RIGHT_PARENTHESIS;
+        } else if (id == R.id.btn_right_parenthesis) {
+            EXPRESSION += PASSED_VALUE;
             binding.userExpression.setText(EXPRESSION);
-        });
-
-        //added, remove
-        binding.btnClear.setOnClickListener(v -> {
-            EXPRESSION = "";
-            ANSWER = "";
+        } else if (id == R.id.btn_clear) {
+            EXPRESSION = ANSWER = "";
             binding.calculatedAnswer.setText(ANSWER);
             binding.userExpression.setText(EXPRESSION);
             binding.userExpression.setError(null);
@@ -255,15 +159,13 @@ public class MainActivity extends AppCompatActivity {
             editor.putString(EXPRESSION_PREFS_KEY, "");
             editor.putString(ANSWER_PREFS_KEY, "");
             editor.apply();
-        });
-        binding.btnDel.setOnClickListener(v -> {
+        } else if (id == R.id.btn_del) {
             binding.userExpression.setError(null);
             if (EXPRESSION.length() != 0) {
                 EXPRESSION = EXPRESSION.substring(0, EXPRESSION.length() - 1);
                 binding.userExpression.setText(EXPRESSION);
             }
-        });
-        binding.btnEqual.setOnClickListener(v -> {
+        } else if (id == R.id.btn_equal) {
             if (EXPRESSION.length() == 0) {
                 binding.userExpression.setError(null);
             } else {
@@ -302,7 +204,7 @@ public class MainActivity extends AppCompatActivity {
                     }
                 }
             }
-        });
+        }
     }
 
     @SuppressLint("SetTextI18n")
@@ -408,6 +310,7 @@ public class MainActivity extends AppCompatActivity {
         }
         return tokens;
     }
+
     /*
      * Look for the operator and evaluate the left and right values
      * Returns a smaller expression
