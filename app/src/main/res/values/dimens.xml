@@ -9,7 +9,7 @@
     <dimen name="layout_padding_large">16dp</dimen>
     <dimen name="text_size_small">16sp</dimen>
     <dimen name="text_size_medium">20sp</dimen>
-    <dimen name="text_size_large">36sp</dimen>
+    <dimen name="text_size_large">44sp</dimen>
     <dimen name="textview_padding_small">8dp</dimen>
     <dimen name="textview_padding_medium">16dp</dimen>
     <dimen name="textview_padding_large">60dp</dimen>

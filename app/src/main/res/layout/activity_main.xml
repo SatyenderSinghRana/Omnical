@@ -7,8 +7,10 @@
     android:background="@color/app_background"
     tools:context="com.calculator.omnical.MainActivity">
 
-    <!--Top area-->
+    <!--All the onClick functions related to-->
+    <!--Buttons are declared in their style-->
 
+    <!--Top area-->
     <TextView
         android:id="@+id/calculated_answer"
         android:layout_width="match_parent"
@@ -32,6 +34,7 @@
         android:textColorHint="@color/text_result_color"
         android:textIsSelectable="true"
         android:textSize="@dimen/text_size_large"
+        android:textStyle="bold"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
@@ -61,15 +64,18 @@
         android:textColorHint="@color/text_result_color"
         android:textIsSelectable="true"
         android:textSize="@dimen/text_size_medium"
+        android:textStyle="bold"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/calculated_answer"
-        tools:targetApi="o"
-        tools:ignore="ContentDescription" />
+        tools:ignore="ContentDescription"
+        tools:targetApi="o" />
 
+    <!--Bottom Area-->
     <!--Row 0-->
     <ImageView
         android:id="@+id/btn_del"
+        android:onClick="buttonPressed"
         android:layout_width="@dimen/backspace_imageview"
         android:layout_height="@dimen/backspace_imageview"
         android:contentDescription="@string/delete"

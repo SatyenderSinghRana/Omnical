@@ -49,4 +49,5 @@
     <string name="equal_to">Equal to</string>
     <string name="invalidExpression">Invalid Expression!</string>
     <string name="invalidOperator">"Invalid Operator: "</string>
+    <string name="sharedPrefs">SHARED PREFS</string>
 </resources>
