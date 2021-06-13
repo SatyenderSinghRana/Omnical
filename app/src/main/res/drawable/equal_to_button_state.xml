@@ -1,9 +1,14 @@
 <?xml version="1.0" encoding="utf-8"?>
 <selector xmlns:android="http://schemas.android.com/apk/res/android">
     <item android:state_pressed="true">
-        <ripple android:color="@color/button_ripple_color" android:radius="23dp" />
+        <ripple android:color="@color/equal_to_button_color" android:radius="20dp" />
         <shape android:shape="rectangle">
             <corners android:bottomLeftRadius="200dp" android:bottomRightRadius="200dp" android:topLeftRadius="200dp" android:topRightRadius="200dp" />
+        </shape>
+    </item>
+    <item>
+        <shape android:innerRadius="21dp" android:shape="ring" android:thickness="3dp" android:useLevel="false">
+            <solid android:color="@color/equal_to_button_color" />
         </shape>
     </item>
 </selector>

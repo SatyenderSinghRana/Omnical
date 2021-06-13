@@ -26,10 +26,6 @@
         android:paddingTop="@dimen/textview_padding_large"
         android:paddingEnd="@dimen/textview_padding_small"
         android:paddingBottom="@dimen/textview_padding_medium"
-        android:shadowColor="@color/text_display_shadow_color"
-        android:shadowDx="2"
-        android:shadowDy="2"
-        android:shadowRadius="2"
         android:textColor="@color/text_result_color"
         android:textColorHint="@color/text_result_color"
         android:textIsSelectable="true"
@@ -56,10 +52,6 @@
         android:paddingEnd="@dimen/textview_padding_large"
         android:paddingBottom="@dimen/textview_padding_medium"
         android:scrollHorizontally="true"
-        android:shadowColor="@color/text_display_shadow_color"
-        android:shadowDx="2"
-        android:shadowDy="2"
-        android:shadowRadius="2"
         android:textColor="@color/text_result_color"
         android:textColorHint="@color/text_result_color"
         android:textIsSelectable="true"
@@ -78,26 +70,39 @@
         android:layout_width="@dimen/backspace_imageview"
         android:layout_height="@dimen/backspace_imageview"
         android:contentDescription="@string/delete"
-        android:onClick="buttonPressed"
+        android:onClick="deletePressed"
         android:padding="@dimen/layout_padding_medium"
-        android:shadowColor="@color/text_display_shadow_color"
-        android:shadowDx="2"
-        android:shadowDy="2"
-        android:shadowRadius="2"
         android:src="@drawable/backspace"
-        android:tag="@string/delete"
         android:visibility="visible"
         app:layout_constraintBottom_toBottomOf="@+id/user_expression"
         app:layout_constraintEnd_toEndOf="@+id/user_expression"
         app:layout_constraintTop_toBottomOf="@+id/calculated_answer" />
+
+    <androidx.appcompat.widget.SwitchCompat
+        android:id="@+id/switch_input_type"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_margin="@dimen/layout_margin_small"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/user_expression" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/continuous_input"
+        android:textSize="@dimen/text_size_small"
+        android:textColor="@color/textview_background"
+        android:layout_margin="@dimen/layout_margin_small"
+        app:layout_constraintEnd_toStartOf="@+id/switch_input_type"
+        app:layout_constraintTop_toBottomOf="@+id/user_expression" />
 
     <Button
         android:id="@+id/btn_clear"
         style="@style/myGridButtonStyleOperator"
         android:background="@drawable/button_state"
         android:contentDescription="@string/clear"
-        android:tag="@string/button_clear"
         android:text="@string/button_clear"
+        android:onClick="clearPressed"
         app:layout_constraintBottom_toTopOf="@+id/btn_7"
         app:layout_constraintEnd_toStartOf="@+id/guideline3"
         app:layout_constraintStart_toStartOf="parent" />
@@ -109,6 +114,7 @@
         android:contentDescription="@string/left_parenthesis"
         android:tag="@string/button_left_parenthesis"
         android:text="@string/button_left_parenthesis"
+        android:onClick="parenthesisPressed"
         app:layout_constraintBottom_toTopOf="@+id/btn_8"
         app:layout_constraintEnd_toStartOf="@+id/guideline2"
         app:layout_constraintStart_toStartOf="@+id/guideline3" />
@@ -120,6 +126,7 @@
         android:contentDescription="@string/right_parenthesis"
         android:tag="@string/button_right_parenthesis"
         android:text="@string/button_right_parenthesis"
+        android:onClick="parenthesisPressed"
         app:layout_constraintBottom_toTopOf="@+id/btn_9"
         app:layout_constraintEnd_toStartOf="@+id/guideline4"
         app:layout_constraintStart_toStartOf="@+id/guideline2" />
@@ -131,6 +138,7 @@
         android:contentDescription="@string/divide"
         android:tag="@string/button_divide"
         android:text="@string/button_divide"
+        android:onClick="operatorPressed"
         app:layout_constraintBottom_toTopOf="@+id/btn_multiply"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="@+id/guideline4" />
@@ -143,6 +151,7 @@
         android:contentDescription="@string/seven"
         android:tag="@string/button_seven"
         android:text="@string/button_seven"
+        android:onClick="numberPressed"
         app:layout_constraintBottom_toTopOf="@+id/btn_4"
         app:layout_constraintEnd_toStartOf="@+id/guideline3"
         app:layout_constraintStart_toStartOf="parent" />
@@ -154,6 +163,7 @@
         android:contentDescription="@string/eight"
         android:tag="@string/button_eight"
         android:text="@string/button_eight"
+        android:onClick="numberPressed"
         app:layout_constraintBottom_toTopOf="@+id/btn_5"
         app:layout_constraintEnd_toStartOf="@+id/guideline2"
         app:layout_constraintStart_toStartOf="@+id/guideline3" />
@@ -165,6 +175,7 @@
         android:contentDescription="@string/nine"
         android:tag="@string/button_nine"
         android:text="@string/button_nine"
+        android:onClick="numberPressed"
         app:layout_constraintBottom_toTopOf="@+id/btn_6"
         app:layout_constraintEnd_toStartOf="@+id/guideline4"
         app:layout_constraintStart_toStartOf="@+id/guideline2" />
@@ -176,6 +187,7 @@
         android:contentDescription="@string/multiply"
         android:tag="@string/button_multiply"
         android:text="@string/button_multiply"
+        android:onClick="operatorPressed"
         app:layout_constraintBottom_toTopOf="@+id/btn_minus"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="@+id/guideline4" />
@@ -188,6 +200,7 @@
         android:contentDescription="@string/four"
         android:tag="@string/button_four"
         android:text="@string/button_four"
+        android:onClick="numberPressed"
         app:layout_constraintBottom_toTopOf="@+id/btn_1"
         app:layout_constraintEnd_toStartOf="@+id/guideline3"
         app:layout_constraintStart_toStartOf="parent" />
@@ -199,6 +212,7 @@
         android:contentDescription="@string/five"
         android:tag="@string/button_five"
         android:text="@string/button_five"
+        android:onClick="numberPressed"
         app:layout_constraintBottom_toTopOf="@+id/btn_2"
         app:layout_constraintEnd_toStartOf="@+id/guideline2"
         app:layout_constraintStart_toStartOf="@+id/guideline3" />
@@ -210,6 +224,7 @@
         android:contentDescription="@string/six"
         android:tag="@string/button_six"
         android:text="@string/button_six"
+        android:onClick="numberPressed"
         app:layout_constraintBottom_toTopOf="@+id/btn_3"
         app:layout_constraintEnd_toStartOf="@+id/guideline4"
         app:layout_constraintStart_toStartOf="@+id/guideline2" />
@@ -221,6 +236,7 @@
         android:contentDescription="@string/minus"
         android:tag="@string/button_minus"
         android:text="@string/button_minus"
+        android:onClick="operatorPressed"
         app:layout_constraintBottom_toTopOf="@+id/btn_plus"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="@+id/guideline4" />
@@ -233,6 +249,7 @@
         android:contentDescription="@string/one"
         android:tag="@string/button_one"
         android:text="@string/button_one"
+        android:onClick="numberPressed"
         app:layout_constraintBottom_toTopOf="@+id/btn_00"
         app:layout_constraintEnd_toStartOf="@+id/guideline3"
         app:layout_constraintStart_toStartOf="parent" />
@@ -244,6 +261,7 @@
         android:contentDescription="@string/two"
         android:tag="@string/button_two"
         android:text="@string/button_two"
+        android:onClick="numberPressed"
         app:layout_constraintBottom_toTopOf="@+id/btn_0"
         app:layout_constraintEnd_toStartOf="@+id/btn_3"
         app:layout_constraintStart_toStartOf="@+id/guideline3" />
@@ -255,6 +273,7 @@
         android:contentDescription="@string/three"
         android:tag="@string/button_three"
         android:text="@string/button_three"
+        android:onClick="numberPressed"
         app:layout_constraintBottom_toTopOf="@+id/btn_decimal"
         app:layout_constraintEnd_toStartOf="@+id/guideline4"
         app:layout_constraintStart_toStartOf="@+id/guideline2" />
@@ -266,6 +285,7 @@
         android:contentDescription="@string/plus"
         android:tag="@string/button_plus"
         android:text="@string/button_plus"
+        android:onClick="operatorPressed"
         app:layout_constraintBottom_toTopOf="@+id/btn_equal"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="@+id/guideline4" />
@@ -278,6 +298,7 @@
         android:contentDescription="@string/double_zero"
         android:tag="@string/button_double_zero"
         android:text="@string/button_double_zero"
+        android:onClick="numberPressed"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toStartOf="@+id/guideline3"
         app:layout_constraintStart_toStartOf="parent" />
@@ -289,6 +310,7 @@
         android:contentDescription="@string/zero"
         android:tag="@string/button_zero"
         android:text="@string/button_zero"
+        android:onClick="numberPressed"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toStartOf="@+id/guideline2"
         app:layout_constraintStart_toStartOf="@+id/guideline3" />
@@ -300,7 +322,8 @@
         android:contentDescription="@string/decimal"
         android:tag="@string/button_decimal"
         android:text="@string/button_decimal"
-        android:textSize="18sp"
+        android:textSize="@dimen/text_size_medium"
+        android:onClick="decimalPressed"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toStartOf="@+id/guideline4"
         app:layout_constraintStart_toStartOf="@+id/guideline2" />
@@ -308,28 +331,29 @@
     <Button
         android:id="@+id/btn_equal"
         style="@style/myGridButtonStyleEqualTo"
-        android:background="@drawable/button_state"
+        android:background="@drawable/equal_to_button_state"
         android:contentDescription="@string/equal_to"
         android:tag="@string/button_equal_to"
         android:text="@string/button_equal_to"
+        android:onClick="equal_To_Pressed"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="@+id/guideline4" />
 
     <!--Guidelines-->
     <androidx.constraintlayout.widget.Guideline
-        android:id="@+id/guideline2"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:orientation="vertical"
-        app:layout_constraintGuide_percent="0.5" />
-
-    <androidx.constraintlayout.widget.Guideline
         android:id="@+id/guideline3"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:orientation="vertical"
         app:layout_constraintGuide_percent="0.25" />
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/guideline2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        app:layout_constraintGuide_percent="0.5" />
 
     <androidx.constraintlayout.widget.Guideline
         android:id="@+id/guideline4"

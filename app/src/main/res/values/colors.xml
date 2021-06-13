@@ -15,7 +15,6 @@
     <color name="button_ripple_color">#fee08a</color>
     <color name="text_result_color">#eefbfe</color>
     <color name="text_display_color">#232f34</color>
-    <color name="text_display_shadow_color">#000000</color>
     <color name="number_button_color">#879CE6</color>
     <color name="operator_button_color">#65c1ff</color>
     <color name="equal_to_button_color">#ff8999</color>

@@ -50,4 +50,7 @@
     <string name="invalidExpression">Invalid Expression!</string>
     <string name="invalidOperator">"Invalid Operator: "</string>
     <string name="sharedPrefs">SHARED PREFS</string>
+    <string name="continuous_input">Continuous input</string>
+    <string name="first_run">First Run</string>
+    <string name="shared_prefs">SHARED PREFS</string>
 </resources>

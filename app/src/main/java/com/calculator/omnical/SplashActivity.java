@@ -18,30 +18,36 @@ import com.calculator.omnical.databinding.ActivitySplashBinding;
 
 public class SplashActivity extends AppCompatActivity {
 
+    static final int ANIMATION_DURATION = 800;
+    static final float ALPHA_VALUE = 1f;
+    static final float TRANSLATION_Y_VALUE = 0f;
+    private String CHECK_FIRST_RUN;
+    private String SHARED_PREFS;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        CHECK_FIRST_RUN = getString(R.string.first_run);
+        SHARED_PREFS = getString(R.string.shared_prefs);
+
         com.calculator.omnical.databinding.ActivitySplashBinding binding = ActivitySplashBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
-        final int ANIMATION_DURATION = 800;
-        final float ALPHA_VALUE = 1f;
-        final float TRANSLATION_Y_VALUE = 0f;
+
         binding.tvAppName.animate().alpha(ALPHA_VALUE).translationY(TRANSLATION_Y_VALUE).setDuration(ANIMATION_DURATION);
 
-        SharedPreferences sharedPrefs = getSharedPreferences("SHARED PREFS", Context.MODE_PRIVATE);
-        String checkFirstRun = "First Run";
-        boolean firstRun = sharedPrefs.getBoolean(checkFirstRun, false);
+        SharedPreferences sharedPrefs = getSharedPreferences(SHARED_PREFS, Context.MODE_PRIVATE);
+        boolean firstRun = sharedPrefs.getBoolean(CHECK_FIRST_RUN, false);
         if (!firstRun) {
             SharedPreferences.Editor editor = sharedPrefs.edit();
-            editor.putBoolean(checkFirstRun, true);
+            editor.putBoolean(CHECK_FIRST_RUN, true);
             editor.apply();
 
-            final int splashScreenDuration = 1000;
+            final int SPLASH_SCREEN_DURATION = 1000;
             new Handler(Looper.getMainLooper()).postDelayed(() -> {
                 Intent i = new Intent(SplashActivity.this, MainActivity.class);
                 startActivity(i);
                 finish();
-            }, splashScreenDuration);
+            }, SPLASH_SCREEN_DURATION);
         } else {
             Intent i = new Intent(SplashActivity.this, MainActivity.class);
             startActivity(i);
