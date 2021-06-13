@@ -7,29 +7,358 @@
     android:background="@color/app_background"
     tools:context="com.calculator.omnical.MainActivity">
 
-    <FrameLayout
-        android:id="@+id/top_frame_layout"
+    <!--All the onClick functions related to-->
+    <!--Buttons are declared in their style-->
+
+    <!--Top area-->
+    <TextView
+        android:id="@+id/calculated_answer"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="@color/text_display_color"
+        android:alpha="1"
+        android:background="@color/textview_background"
+        android:contentDescription="@string/result_hint"
+        android:gravity="start"
+        android:hint="@string/result_hint"
+        android:maxLength="60"
+        android:maxLines="4"
+        android:paddingStart="@dimen/textview_padding_medium"
         android:paddingTop="@dimen/textview_padding_large"
+        android:paddingEnd="@dimen/textview_padding_small"
         android:paddingBottom="@dimen/textview_padding_medium"
+        android:textColor="@color/text_result_color"
+        android:textColorHint="@color/text_result_color"
+        android:textIsSelectable="true"
+        android:textSize="@dimen/text_size_large"
+        android:textStyle="bold"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent">
+        app:layout_constraintTop_toTopOf="parent"
+        tools:ignore="ContentDescription"
+        tools:targetApi="o" />
 
-        <include layout="@layout/layout_top_equation_area" />
-    </FrameLayout>
+    <TextView
+        android:id="@+id/user_expression"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:background="@color/textview_background"
+        android:contentDescription="@string/expression"
+        android:gravity="start"
+        android:hint="@string/expression_hint"
+        android:maxLength="50"
+        android:maxLines="2"
+        android:paddingStart="@dimen/textview_padding_medium"
+        android:paddingTop="@dimen/textview_padding_medium"
+        android:paddingEnd="@dimen/textview_padding_large"
+        android:paddingBottom="@dimen/textview_padding_medium"
+        android:scrollHorizontally="true"
+        android:textColor="@color/text_result_color"
+        android:textColorHint="@color/text_result_color"
+        android:textIsSelectable="true"
+        android:textSize="@dimen/text_size_medium"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/calculated_answer"
+        tools:ignore="ContentDescription"
+        tools:targetApi="o" />
 
-    <FrameLayout
-        android:id="@+id/bottom_frame_layout"
-        android:layout_width="match_parent"
+    <!--Bottom Area-->
+    <!--Row 0-->
+    <ImageView
+        android:id="@+id/btn_del"
+        android:layout_width="@dimen/backspace_imageview"
+        android:layout_height="@dimen/backspace_imageview"
+        android:contentDescription="@string/delete"
+        android:onClick="deletePressed"
+        android:padding="@dimen/layout_padding_medium"
+        android:src="@drawable/backspace"
+        android:visibility="visible"
+        app:layout_constraintBottom_toBottomOf="@+id/user_expression"
+        app:layout_constraintEnd_toEndOf="@+id/user_expression"
+        app:layout_constraintTop_toBottomOf="@+id/calculated_answer" />
+
+    <androidx.appcompat.widget.SwitchCompat
+        android:id="@+id/switch_input_type"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_margin="@dimen/layout_margin_small"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/user_expression" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/continuous_input"
+        android:textSize="@dimen/text_size_small"
+        android:textColor="@color/textview_background"
+        android:layout_margin="@dimen/layout_margin_small"
+        app:layout_constraintEnd_toStartOf="@+id/switch_input_type"
+        app:layout_constraintTop_toBottomOf="@+id/user_expression" />
+
+    <Button
+        android:id="@+id/btn_clear"
+        style="@style/myGridButtonStyleOperator"
+        android:background="@drawable/button_state"
+        android:contentDescription="@string/clear"
+        android:text="@string/button_clear"
+        android:onClick="clearPressed"
+        app:layout_constraintBottom_toTopOf="@+id/btn_7"
+        app:layout_constraintEnd_toStartOf="@+id/guideline3"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <Button
+        android:id="@+id/btn_left_parenthesis"
+        style="@style/myGridButtonStyleOperator"
+        android:background="@drawable/button_state"
+        android:contentDescription="@string/left_parenthesis"
+        android:tag="@string/button_left_parenthesis"
+        android:text="@string/button_left_parenthesis"
+        android:onClick="parenthesisPressed"
+        app:layout_constraintBottom_toTopOf="@+id/btn_8"
+        app:layout_constraintEnd_toStartOf="@+id/guideline2"
+        app:layout_constraintStart_toStartOf="@+id/guideline3" />
+
+    <Button
+        android:id="@+id/btn_right_parenthesis"
+        style="@style/myGridButtonStyleOperator"
+        android:background="@drawable/button_state"
+        android:contentDescription="@string/right_parenthesis"
+        android:tag="@string/button_right_parenthesis"
+        android:text="@string/button_right_parenthesis"
+        android:onClick="parenthesisPressed"
+        app:layout_constraintBottom_toTopOf="@+id/btn_9"
+        app:layout_constraintEnd_toStartOf="@+id/guideline4"
+        app:layout_constraintStart_toStartOf="@+id/guideline2" />
+
+    <Button
+        android:id="@+id/btn_divide"
+        style="@style/myGridButtonStyleOperator"
+        android:background="@drawable/button_state"
+        android:contentDescription="@string/divide"
+        android:tag="@string/button_divide"
+        android:text="@string/button_divide"
+        android:onClick="operatorPressed"
+        app:layout_constraintBottom_toTopOf="@+id/btn_multiply"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="@+id/guideline4" />
+
+    <!--Row 1-->
+    <Button
+        android:id="@+id/btn_7"
+        style="@style/myGridButtonStyleNumber"
+        android:background="@drawable/button_state"
+        android:contentDescription="@string/seven"
+        android:tag="@string/button_seven"
+        android:text="@string/button_seven"
+        android:onClick="numberPressed"
+        app:layout_constraintBottom_toTopOf="@+id/btn_4"
+        app:layout_constraintEnd_toStartOf="@+id/guideline3"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <Button
+        android:id="@+id/btn_8"
+        style="@style/myGridButtonStyleNumber"
+        android:background="@drawable/button_state"
+        android:contentDescription="@string/eight"
+        android:tag="@string/button_eight"
+        android:text="@string/button_eight"
+        android:onClick="numberPressed"
+        app:layout_constraintBottom_toTopOf="@+id/btn_5"
+        app:layout_constraintEnd_toStartOf="@+id/guideline2"
+        app:layout_constraintStart_toStartOf="@+id/guideline3" />
+
+    <Button
+        android:id="@+id/btn_9"
+        style="@style/myGridButtonStyleNumber"
+        android:background="@drawable/button_state"
+        android:contentDescription="@string/nine"
+        android:tag="@string/button_nine"
+        android:text="@string/button_nine"
+        android:onClick="numberPressed"
+        app:layout_constraintBottom_toTopOf="@+id/btn_6"
+        app:layout_constraintEnd_toStartOf="@+id/guideline4"
+        app:layout_constraintStart_toStartOf="@+id/guideline2" />
+
+    <Button
+        android:id="@+id/btn_multiply"
+        style="@style/myGridButtonStyleOperator"
+        android:background="@drawable/button_state"
+        android:contentDescription="@string/multiply"
+        android:tag="@string/button_multiply"
+        android:text="@string/button_multiply"
+        android:onClick="operatorPressed"
+        app:layout_constraintBottom_toTopOf="@+id/btn_minus"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="@+id/guideline4" />
+
+    <!--Row 2-->
+    <Button
+        android:id="@+id/btn_4"
+        style="@style/myGridButtonStyleNumber"
+        android:background="@drawable/button_state"
+        android:contentDescription="@string/four"
+        android:tag="@string/button_four"
+        android:text="@string/button_four"
+        android:onClick="numberPressed"
+        app:layout_constraintBottom_toTopOf="@+id/btn_1"
+        app:layout_constraintEnd_toStartOf="@+id/guideline3"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <Button
+        android:id="@+id/btn_5"
+        style="@style/myGridButtonStyleNumber"
+        android:background="@drawable/button_state"
+        android:contentDescription="@string/five"
+        android:tag="@string/button_five"
+        android:text="@string/button_five"
+        android:onClick="numberPressed"
+        app:layout_constraintBottom_toTopOf="@+id/btn_2"
+        app:layout_constraintEnd_toStartOf="@+id/guideline2"
+        app:layout_constraintStart_toStartOf="@+id/guideline3" />
+
+    <Button
+        android:id="@+id/btn_6"
+        style="@style/myGridButtonStyleNumber"
+        android:background="@drawable/button_state"
+        android:contentDescription="@string/six"
+        android:tag="@string/button_six"
+        android:text="@string/button_six"
+        android:onClick="numberPressed"
+        app:layout_constraintBottom_toTopOf="@+id/btn_3"
+        app:layout_constraintEnd_toStartOf="@+id/guideline4"
+        app:layout_constraintStart_toStartOf="@+id/guideline2" />
+
+    <Button
+        android:id="@+id/btn_minus"
+        style="@style/myGridButtonStyleOperator"
+        android:background="@drawable/button_state"
+        android:contentDescription="@string/minus"
+        android:tag="@string/button_minus"
+        android:text="@string/button_minus"
+        android:onClick="operatorPressed"
+        app:layout_constraintBottom_toTopOf="@+id/btn_plus"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="@+id/guideline4" />
+
+    <!--Row 3-->
+    <Button
+        android:id="@+id/btn_1"
+        style="@style/myGridButtonStyleNumber"
+        android:background="@drawable/button_state"
+        android:contentDescription="@string/one"
+        android:tag="@string/button_one"
+        android:text="@string/button_one"
+        android:onClick="numberPressed"
+        app:layout_constraintBottom_toTopOf="@+id/btn_00"
+        app:layout_constraintEnd_toStartOf="@+id/guideline3"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <Button
+        android:id="@+id/btn_2"
+        style="@style/myGridButtonStyleNumber"
+        android:background="@drawable/button_state"
+        android:contentDescription="@string/two"
+        android:tag="@string/button_two"
+        android:text="@string/button_two"
+        android:onClick="numberPressed"
+        app:layout_constraintBottom_toTopOf="@+id/btn_0"
+        app:layout_constraintEnd_toStartOf="@+id/btn_3"
+        app:layout_constraintStart_toStartOf="@+id/guideline3" />
+
+    <Button
+        android:id="@+id/btn_3"
+        style="@style/myGridButtonStyleNumber"
+        android:background="@drawable/button_state"
+        android:contentDescription="@string/three"
+        android:tag="@string/button_three"
+        android:text="@string/button_three"
+        android:onClick="numberPressed"
+        app:layout_constraintBottom_toTopOf="@+id/btn_decimal"
+        app:layout_constraintEnd_toStartOf="@+id/guideline4"
+        app:layout_constraintStart_toStartOf="@+id/guideline2" />
+
+    <Button
+        android:id="@+id/btn_plus"
+        style="@style/myGridButtonStyleOperator"
+        android:background="@drawable/button_state"
+        android:contentDescription="@string/plus"
+        android:tag="@string/button_plus"
+        android:text="@string/button_plus"
+        android:onClick="operatorPressed"
+        app:layout_constraintBottom_toTopOf="@+id/btn_equal"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="@+id/guideline4" />
+
+    <!--Row 4-->
+    <Button
+        android:id="@+id/btn_00"
+        style="@style/myGridButtonStyleNumber"
+        android:background="@drawable/button_state"
+        android:contentDescription="@string/double_zero"
+        android:tag="@string/button_double_zero"
+        android:text="@string/button_double_zero"
+        android:onClick="numberPressed"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toStartOf="@+id/guideline3"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <Button
+        android:id="@+id/btn_0"
+        style="@style/myGridButtonStyleNumber"
+        android:background="@drawable/button_state"
+        android:contentDescription="@string/zero"
+        android:tag="@string/button_zero"
+        android:text="@string/button_zero"
+        android:onClick="numberPressed"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toStartOf="@+id/guideline2"
+        app:layout_constraintStart_toStartOf="@+id/guideline3" />
+
+    <Button
+        android:id="@+id/btn_decimal"
+        style="@style/myGridButtonStyleNumber"
+        android:background="@drawable/button_state"
+        android:contentDescription="@string/decimal"
+        android:tag="@string/button_decimal"
+        android:text="@string/button_decimal"
+        android:textSize="@dimen/text_size_medium"
+        android:onClick="decimalPressed"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toStartOf="@+id/guideline4"
+        app:layout_constraintStart_toStartOf="@+id/guideline2" />
+
+    <Button
+        android:id="@+id/btn_equal"
+        style="@style/myGridButtonStyleEqualTo"
+        android:background="@drawable/equal_to_button_state"
+        android:contentDescription="@string/equal_to"
+        android:tag="@string/button_equal_to"
+        android:text="@string/button_equal_to"
+        android:onClick="equal_To_Pressed"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent">
+        app:layout_constraintStart_toStartOf="@+id/guideline4" />
 
-        <include layout="@layout/layout_bottom_buttons_area" />
-    </FrameLayout>
+    <!--Guidelines-->
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/guideline3"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        app:layout_constraintGuide_percent="0.25" />
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/guideline2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        app:layout_constraintGuide_percent="0.5" />
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/guideline4"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        app:layout_constraintGuide_percent="0.75" />
 </androidx.constraintlayout.widget.ConstraintLayout>
